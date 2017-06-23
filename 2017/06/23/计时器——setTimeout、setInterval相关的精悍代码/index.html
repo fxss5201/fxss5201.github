@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>获取location对象中search属性中的参数 | 樊小书生——博客</title>
+  <title>计时器——setTimeout、setInterval相关的精悍代码 | 樊小书生——博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生： // 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象 function urlArgs(){     var args = {};">
-<meta name="keywords" content="url 搜索 函数">
+  <meta name="description" content="setTimeout()和setInterval()可以用来注册在指定的时间之后单次或重复调用的函数。 如下展示的应用函数会在等待的指定的时间之后，开始重复调用某个函数，然后过一段时间之后取消函数调用： &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; &amp;lt;head&amp;gt;     &amp;lt;meta charset=&amp;quot;UTF">
+<meta name="keywords" content="函数 javaScript 计时器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="获取location对象中search属性中的参数">
-<meta property="og:url" content="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/index.html">
+<meta property="og:title" content="计时器——setTimeout、setInterval相关的精悍代码">
+<meta property="og:url" content="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/index.html">
 <meta property="og:site_name" content="樊小书生——博客">
-<meta property="og:description" content="location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生： // 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象 function urlArgs(){     var args = {};">
-<meta property="og:updated_time" content="2017-06-23T14:15:06.312Z">
+<meta property="og:description" content="setTimeout()和setInterval()可以用来注册在指定的时间之后单次或重复调用的函数。 如下展示的应用函数会在等待的指定的时间之后，开始重复调用某个函数，然后过一段时间之后取消函数调用： &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; &amp;lt;head&amp;gt;     &amp;lt;meta charset=&amp;quot;UTF">
+<meta property="og:updated_time" content="2017-06-23T14:14:53.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="获取location对象中search属性中的参数">
-<meta name="twitter:description" content="location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生： // 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象 function urlArgs(){     var args = {};">
+<meta name="twitter:title" content="计时器——setTimeout、setInterval相关的精悍代码">
+<meta name="twitter:description" content="setTimeout()和setInterval()可以用来注册在指定的时间之后单次或重复调用的函数。 如下展示的应用函数会在等待的指定的时间之后，开始重复调用某个函数，然后过一段时间之后取消函数调用： &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; &amp;lt;head&amp;gt;     &amp;lt;meta charset=&amp;quot;UTF">
   
     <link rel="alternate" href="/atom.xml" title="樊小书生——博客" type="application/atom+xml">
   
@@ -72,10 +72,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-获取location对象中search属性中的参数" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-计时器——setTimeout、setInterval相关的精悍代码" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/06/23/获取location对象中search属性中的参数/" class="article-date">
-  <time datetime="2017-06-23T14:11:25.000Z" itemprop="datePublished">2017-06-23</time>
+    <a href="/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" class="article-date">
+  <time datetime="2017-06-23T14:13:51.000Z" itemprop="datePublished">2017-06-23</time>
 </a>
     
   </div>
@@ -86,7 +86,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      获取location对象中search属性中的参数
+      计时器——setTimeout、setInterval相关的精悍代码
     </h1>
   
 
@@ -96,37 +96,52 @@
       
         <!-- Table of Contents -->
         
-        <p>location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生：</p>
-<pre><code>// 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象
-function urlArgs(){
-    var args = {};
-    var query = location.search.substring(1);
-    var pairs = query.split(&quot;&amp;&quot;);
-    for(var i = 0;i &lt; pairs.length; i++){
-        var pos = pairs[i].indexOf(&quot;=&quot;);
-        if(pos == -1) continue;
-        var name = pairs[i].substring(0, pos);
-        var value = pairs[i].substring(pos + 1);
-        value = decodeURIComponent(value);
-        args[name] = value;
+        <p>setTimeout()和setInterval()可以用来注册在指定的时间之后单次或重复调用的函数。</p>
+<p>如下展示的应用函数会在等待的指定的时间之后，开始重复调用某个函数，然后过一段时间之后取消函数调用：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;计时器&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;
+    function invoke(f, start, interval, end){
+        if(!start) start = 0;
+        if(arguments.length &lt;= 2){
+            setTimeout(f, start);
+        }else{
+            setTimeout(repeat, start);
+            function repeat(){
+                var h = setInterval(f, interval);
+
+                if(end) setTimeout(function(){ clearInterval(h); }, end);
+            }
+        }
     }
-    return args;
-}
-/*
- * 使用方法
- * var args = urlArgs();
- * var q = args.q || &quot;&quot;;
- * var n = args.n ? parseInt(args.n) : 10;
- */
+    function getTime(){
+        var date = new Date();
+        console.log(date);
+    }
+    invoke(getTime);// 立即调用函数
+
+    //invoke(getTime, 1000);// 1s后开始调用函数
+
+    //invoke(getTime, 200, 500);// 200ms之后调用函数，每500ms调用一次
+
+    //invoke(getTime, 2000, 2000, 10000);// 2s后开始调用函数，每2s重复调用一次，直到10s之后取消函数调用
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj49xv1ed00015cr0js2zlmdt" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj49xv1ei00025cr0xrwkaylz" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/url-搜索-函数/">url 搜索 函数</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数-javaScript-计时器/">函数 javaScript 计时器</a></li></ul>
 
     </footer>
   </div>
@@ -134,19 +149,10 @@ function urlArgs(){
     
 <nav id="article-nav">
   
-    <a href="/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          计时器——setTimeout、setInterval相关的精悍代码
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/06/23/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/06/23/获取location对象中search属性中的参数/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">获取location对象中search属性中的参数</div>
     </a>
   
 </nav>
