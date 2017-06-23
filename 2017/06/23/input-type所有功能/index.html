@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>樊小书生——博客</title>
+  <title> input type所有功能 | 樊小书生——博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="欢迎来到樊小书生的博客，希望你在此可以学到有用的东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="樊小书生——博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="input输入框，常用的type属性有button/submit/text/password/checkbox/radio/hidden/file/number等等，随着技术不断的发展，input的功能也越来越强大，现在开始支持date/color/email/url等等新功能，下表是总结的现有的input的所有type属性。 |    值     | 描述 | | --------- | :--">
+<meta name="keywords" content="input html">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" input type所有功能">
+<meta property="og:url" content="http://yoursite.com/2017/06/23/input-type所有功能/index.html">
 <meta property="og:site_name" content="樊小书生——博客">
-<meta property="og:description" content="欢迎来到樊小书生的博客，希望你在此可以学到有用的东西">
+<meta property="og:description" content="input输入框，常用的type属性有button/submit/text/password/checkbox/radio/hidden/file/number等等，随着技术不断的发展，input的功能也越来越强大，现在开始支持date/color/email/url等等新功能，下表是总结的现有的input的所有type属性。 |    值     | 描述 | | --------- | :--">
+<meta property="og:updated_time" content="2017-06-23T14:39:13.656Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="樊小书生——博客">
-<meta name="twitter:description" content="欢迎来到樊小书生的博客，希望你在此可以学到有用的东西">
+<meta name="twitter:title" content=" input type所有功能">
+<meta name="twitter:description" content="input输入框，常用的type属性有button/submit/text/password/checkbox/radio/hidden/file/number等等，随着技术不断的发展，input的功能也越来越强大，现在开始支持date/color/email/url等等新功能，下表是总结的现有的input的所有type属性。 |    值     | 描述 | | --------- | :--">
   
     <link rel="alternate" href="/atom.xml" title="樊小书生——博客" type="application/atom+xml">
   
@@ -70,9 +72,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-input-type所有功能" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-input-type所有功能" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/23/input-type所有功能/" class="article-date">
   <time datetime="2017-06-23T14:16:18.000Z" itemprop="datePublished">2017-06-23</time>
@@ -85,8 +85,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/23/input-type所有功能/"> input type所有功能</a>
+    <h1 class="article-title" itemprop="name">
+       input type所有功能
     </h1>
   
 
@@ -300,295 +300,32 @@
     </footer>
   </div>
   
-</article>
- 
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-计时器——setTimeout、setInterval相关的精悍代码" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" class="article-date">
-  <time datetime="2017-06-23T14:13:51.000Z" itemprop="datePublished">2017-06-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/">计时器——setTimeout、setInterval相关的精悍代码</a>
-    </h1>
+    <a href="/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">计时器——setTimeout、setInterval相关的精悍代码</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>setTimeout()和setInterval()可以用来注册在指定的时间之后单次或重复调用的函数。</p>
-<p>如下展示的应用函数会在等待的指定的时间之后，开始重复调用某个函数，然后过一段时间之后取消函数调用：</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;计时器&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;script&gt;
-    function invoke(f, start, interval, end){
-        if(!start) start = 0;
-        if(arguments.length &lt;= 2){
-            setTimeout(f, start);
-        }else{
-            setTimeout(repeat, start);
-            function repeat(){
-                var h = setInterval(f, interval);
-
-                if(end) setTimeout(function(){ clearInterval(h); }, end);
-            }
-        }
-    }
-    function getTime(){
-        var date = new Date();
-        console.log(date);
-    }
-    invoke(getTime);// 立即调用函数
-
-    //invoke(getTime, 1000);// 1s后开始调用函数
-
-    //invoke(getTime, 200, 500);// 200ms之后调用函数，每500ms调用一次
-
-    //invoke(getTime, 2000, 2000, 10000);// 2s后开始调用函数，每2s重复调用一次，直到10s之后取消函数调用
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj49yq7yo00035cr0abf4vzoz" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数-javaScript-计时器/">函数 javaScript 计时器</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
  
-
-
-  
-    <article id="post-获取location对象中search属性中的参数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/23/获取location对象中search属性中的参数/" class="article-date">
-  <time datetime="2017-06-23T14:11:25.000Z" itemprop="datePublished">2017-06-23</time>
-</a>
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+           <div id="gitment_comments"></div>
     
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/23/获取location对象中search属性中的参数/">获取location对象中search属性中的参数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生：</p>
-<pre><code>// 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象
-function urlArgs(){
-    var args = {};
-    var query = location.search.substring(1);
-    var pairs = query.split(&quot;&amp;&quot;);
-    for(var i = 0;i &lt; pairs.length; i++){
-        var pos = pairs[i].indexOf(&quot;=&quot;);
-        if(pos == -1) continue;
-        var name = pairs[i].substring(0, pos);
-        var value = pairs[i].substring(pos + 1);
-        value = decodeURIComponent(value);
-        args[name] = value;
-    }
-    return args;
-}
-/*
- * 使用方法
- * var args = urlArgs();
- * var q = args.q || &quot;&quot;;
- * var n = args.n ? parseInt(args.n) : 10;
- */
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj49yq7y800005cr0en5zcmcm" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/url-搜索-函数/">url 搜索 函数</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
  
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/23/hello-world/" class="article-date">
-  <time datetime="2017-06-23T13:25:36.588Z" itemprop="datePublished">2017-06-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/23/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/hello-world/" data-id="cj49yq7yg00015cr0x9kruzme" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-阶乘——arguments-Array-reduce-与Array-reduceRight-的实践" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" class="article-date">
-  <time datetime="2017-06-22T04:23:37.000Z" itemprop="datePublished">2017-06-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/">阶乘——arguments/Array.reduce()与Array.reduceRight()的实践</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h1><p>阶乘指从1乘以2乘以3乘以4一直乘到所要求的数。</p>
-<pre><code>0! = 1;
-1! = 1;
-2! = 1 * 2 ;
-3! = 1 * 2 * 3;
-n! = 1 * 2 * 3 * …… * n ;
-</code></pre><h1 id="js实现"><a href="#js实现" class="headerlink" title="js实现"></a>js实现</h1><p>我们在代码里面肯定是不可能这样实现的，因为n的不确定性，所以我们要写一个函数来实现。</p>
-<pre><code>var factorial = function(n){
-    if(n &lt; 2) return 1;
-    else return n * arguments.callee(n - 1);
-}
-var a = factorial(0); //1
-var b = factorial(1); //1
-var c = factorial(2); //2
-var d = factorial(3); //6
-</code></pre><p>满足要求，我们在实现的时候实际上主要用到的arguments.callee，<br>arguments.callee指代当前正在执行的函数，通过它可以引用匿名函数自身。该属性值定义在函数体中。</p>
-<p>前两天看的Array.reduce()感觉也可以实现，Array.reduce()从数组元素中计算一个值，共两个参数，第一个参数是一个函数，可以合并两个值（比如两个数组元素），并返回一个缩减的新值，第二个参数是一个数值，用来缩减数组的可选初始值。</p>
-<pre><code>[1,2,3,4].reduce(function(x,y){ return x*y; }, 1); //24
-</code></pre><p>有点像阶乘，那就可以实现了。</p>
-<pre><code>var factorial = function(n){
-    if(n &lt; 2) return 1;
-    else{
-        var array = [];
-        for(var i = 2; i &lt;= n; i++){
-            array.push(i);
-        }
-        return array.reduce(function(x,y){ return x*y; }, 1);
-    };
-}
-var a = factorial(0); //1
-var b = factorial(1); //1
-var c = factorial(2); //2
-var d = factorial(3); //6
-var e = factorial(4); //24
-</code></pre><p>既然Array.reduce()可以实现，那么Array.reduceRight()也是可以实现的，Array.reduceRight()与Array.reduce()的不同之处是Array.reduce()是从左到右缩减数组，而Array.reduceRight()是从右到左缩减数组，参数都一样。</p>
-<pre><code>var factorial = function(n){
-    if(n &lt; 2) return 1;
-    else{
-        var array = [];
-        for(var i = 2; i &lt;= n; i++){
-            array.push(i);
-        }
-        return array.reduceRight(function(x,y){ return x*y; }, 1);
-    };
-}
-var a = factorial(0); //1
-var b = factorial(1); //1
-var c = factorial(2); //2
-var d = factorial(3); //6
-var e = factorial(4); //24
-</code></pre><p>虽然后面两种方式也可以实现，但明显复杂了许多，推荐使用第一种。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" data-id="cj49yq7yw00055cr0lygjowum" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数-阶乘-Array-arguments/">函数 阶乘 Array arguments</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
   
 
 </section>
@@ -596,26 +333,6 @@ var e = factorial(4); //24
     <aside id="sidebar">
   
     
-  <div class="widget-wrap">
-     
-        <h3 class="follow-title ">Follow me</h3>
-     
-    <div class="widget follow">
-      
-              <a class="github" aria-hidden="true" href="https://github.com/fxss5201/" target="_blank" title="Github"></a>
-      
-      
-            <a class="weibo" aria-hidden="true"  href="http://weibo.com/6122497490/" target="_blank" title="微博"></a>
-      
-      
-              <a class="zhihu" aria-hidden="true"  href="https://www.zhihu.com/people/fan-xiao-shu-sheng" target="_blank" title="知乎"></a>
-      
-      
-            <a class="email" aria-hidden="true"  href="mailto:723107234@qq.com" target="_blank" title="邮箱"></a>
-      
-    </div>
-  </div>
-
 
   
     
@@ -624,13 +341,6 @@ var e = factorial(4); //24
 
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a>
-    </div>
-  </div>
-
   
     
   <div class="widget-wrap">
@@ -664,29 +374,9 @@ var e = factorial(4); //24
 
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title archive">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">5</span></li></ul>
-    </div>
-  </div>
-
 
   
     
-<div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
-    <div class="widget">
-        <ul>
-            
-            <li>
-                <a href="http://blog.csdn.net/fxss5201">csdn</a>
-            </li>
-            
-        </ul>
-    </div>
-</div>
-
   
 </aside>
 
