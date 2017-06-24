@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>border-radius的趣味妙谈 | 樊小书生——博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="border-radius相信大家都不陌生吧，主要是在页面中处理圆角。使用也很方便： 定义和用法border-radius 属性是一个简写属性，用于设置四个 border-*-radius 属性。提示：该属性允许您为元素添加圆角边框！ 语法border-radius: 1-4 length|% / 1-4 length|%; 注释：按此顺序设置每个 radii 的四个值。如果省略 bottom-l">
+<meta name="keywords" content="radius css3 圆角">
+<meta property="og:type" content="article">
+<meta property="og:title" content="border-radius的趣味妙谈">
+<meta property="og:url" content="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/index.html">
+<meta property="og:site_name" content="樊小书生——博客">
+<meta property="og:description" content="border-radius相信大家都不陌生吧，主要是在页面中处理圆角。使用也很方便： 定义和用法border-radius 属性是一个简写属性，用于设置四个 border-*-radius 属性。提示：该属性允许您为元素添加圆角边框！ 语法border-radius: 1-4 length|% / 1-4 length|%; 注释：按此顺序设置每个 radii 的四个值。如果省略 bottom-l">
+<meta property="og:updated_time" content="2017-06-24T15:21:21.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="border-radius的趣味妙谈">
+<meta name="twitter:description" content="border-radius相信大家都不陌生吧，主要是在页面中处理圆角。使用也很方便： 定义和用法border-radius 属性是一个简写属性，用于设置四个 border-*-radius 属性。提示：该属性允许您为元素添加圆角边框！ 语法border-radius: 1-4 length|% / 1-4 length|%; 注释：按此顺序设置每个 radii 的四个值。如果省略 bottom-l">
+  
+    <link rel="alternate" href="/atom.xml" title="樊小书生——博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">樊小书生——博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">多看代码，多看书，付出总会有收获的。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-border-radius的趣味妙谈" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/24/border-radius的趣味妙谈/" class="article-date">
+  <time datetime="2017-06-24T15:18:48.000Z" itemprop="datePublished">2017-06-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      border-radius的趣味妙谈
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>border-radius相信大家都不陌生吧，主要是在页面中处理圆角。使用也很方便：</p>
+<h2 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>border-radius 属性是一个简写属性，用于设置四个 border-*-radius 属性。<br>提示：该属性允许您为元素添加圆角边框！</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><pre><code>border-radius: 1-4 length|% / 1-4 length|%;
+</code></pre><p>注释：按此顺序设置每个 radii 的四个值。如果省略 bottom-left，则与 top-right 相同。如果省略 bottom-right，则与 top-left 相同。如果省略 top-right，则与 top-left 相同。</p>
+<p>话句话说就是：</p>
+<pre><code>border-radius: 5px; ==  border-radius: 5px 5px 5px 5px;
+border-radius: 5px 6px; == border-radius: 5px 6px 5px 6px;
+border-radius: 5px 6px 8px; == border-radius: 5px 6px 8px 5px;
+</code></pre><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>length</td>
+<td>定义圆角的形状。</td>
+</tr>
+<tr>
+<td>%</td>
+<td>以百分比定义圆角的形状。</td>
+</tr>
+</tbody>
+</table>
+<p>上面主要介绍一下使用方法，现在来看一下比较有趣的事情；<br>当设置的是具体的长度也就是length的时候，当设置的值小于元素的最小的一边（长和宽中较小的值）的一半的时候，圆角会有相应的变化；当等于最小边的一半的时候，最小边就会变成一个半圆；当大于最小边的一半的时候，表现形式依然是之前的最小边变成半圆，不会将圆角继续扩大。</p>
+<p>当以百分比来设置圆角的时候，当设置的是0%——50%之间的数值的时候，圆角会随着数值的增长而扩大；当为50%的时候，元素会变成椭圆；当数值大于50%的时候，元素依旧为椭圆，而且圆角不会继续扩大。</p>
+<p>两者语义上看上去挺相同的，但是实际效果不一样，以length设置圆角的时候，当设置为最小边的一半的时候，最长边中依然会有一段线段是直线，而以百分比设置的时候，设置为50%的时候，是元素整体变为椭圆，不论是最小边还是最长边都没有直线段，这就是两者的差别。</p>
+<p>但是如果要设置的元素是圆形的话，则设置元素的宽度的一半或者50%的时候，表现形式是一致的。</p>
+<p>下面给的例子主要是为了演示在长方形的情况下，设置圆角的时候，以length和%设置圆角的不同之处（填写相应的数据，然后点击相应的更改样式按钮即可）。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;border-radius的length和%的区别&lt;/title&gt;
+    &lt;style&gt;
+        .content {width: 500px;height: 240px}
+        .content h1 {font-size: 14px;}    
+        .change {width: 100px;height: 16px;margin: 0 20px 20px 0;display: inline-block;}
+        .change-length-show,.change-number-show {width: 100px;height: 150px;background-color: red;}
+        button {margin-left: 20px;}
+    &lt;/style&gt;
+    &lt;script src=&quot;http://apps.bdimg.com/libs/jquery/1.11.3/jquery.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;content&quot;&gt;
+    &lt;h1&gt;length控制border-radius&lt;/h1&gt;
+    &lt;div&gt;
+        &lt;input type=&quot;text&quot; name=&quot;length&quot; class=&quot;change&quot; id=&quot;length&quot;&gt;px&lt;button id=&quot;change-length&quot;&gt;更改样式&lt;/button&gt;
+        &lt;div class=&quot;change-length-show&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+    &lt;h1&gt;%控制border-radius&lt;/h1&gt;
+    &lt;div&gt;
+        &lt;input type=&quot;text&quot; name=&quot;length&quot; class=&quot;change&quot; id=&quot;number&quot;&gt;%&lt;button id=&quot;change-number&quot;&gt;更改样式&lt;/button&gt;
+        &lt;div class=&quot;change-number-show&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+$(&quot;#change-length&quot;).on(&apos;click&apos;, function() {
+    var length = $(&quot;#length&quot;).val();
+    length = length ? length : 0;
+    $(&quot;.change-length-show&quot;).css(&quot;border-radius&quot;, length + &quot;px&quot;);
+});
+$(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
+    var number = $(&quot;#number&quot;).val();
+    number = number ? number : 0;
+    $(&quot;.change-number-show&quot;).css(&quot;border-radius&quot;, number + &quot;%&quot;);
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4bfo7ya0004tsr03j0ced38" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/radius-css3-圆角/">radius css3 圆角</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/23/cursor的所有样式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">cursor的所有样式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+           <div id="gitment_comments"></div>
+    
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义和用法"><span class="toc-number">1.</span> <span class="toc-text">定义和用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2017 樊玉顺&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;723107234@qq.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script> 
+  <script>
+  var gitment = new Gitment({
+    // id: '页面 ID', // 可选。默认为 location.href
+    owner: 'giscafer',
+    repo: 'giscafer.github.io',
+    oauth: {
+    client_id: '7e5dd6cdb9xxaxa4cf91a',
+    client_secret: '97f37d5c27c4a511xx4fxx623d391c85cb97f8',
+    }
+  })
+  gitment.render(document.getElementById("gitment_comments"))
+</script>
+
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>

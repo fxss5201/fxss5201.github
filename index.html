@@ -72,6 +72,122 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-border-radius的趣味妙谈" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/24/border-radius的趣味妙谈/" class="article-date">
+  <time datetime="2017-06-24T15:18:48.000Z" itemprop="datePublished">2017-06-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/24/border-radius的趣味妙谈/">border-radius的趣味妙谈</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>border-radius相信大家都不陌生吧，主要是在页面中处理圆角。使用也很方便：</p>
+<h2 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>border-radius 属性是一个简写属性，用于设置四个 border-*-radius 属性。<br>提示：该属性允许您为元素添加圆角边框！</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><pre><code>border-radius: 1-4 length|% / 1-4 length|%;
+</code></pre><p>注释：按此顺序设置每个 radii 的四个值。如果省略 bottom-left，则与 top-right 相同。如果省略 bottom-right，则与 top-left 相同。如果省略 top-right，则与 top-left 相同。</p>
+<p>话句话说就是：</p>
+<pre><code>border-radius: 5px; ==  border-radius: 5px 5px 5px 5px;
+border-radius: 5px 6px; == border-radius: 5px 6px 5px 6px;
+border-radius: 5px 6px 8px; == border-radius: 5px 6px 8px 5px;
+</code></pre><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>length</td>
+<td>定义圆角的形状。</td>
+</tr>
+<tr>
+<td>%</td>
+<td>以百分比定义圆角的形状。</td>
+</tr>
+</tbody>
+</table>
+<p>上面主要介绍一下使用方法，现在来看一下比较有趣的事情；<br>当设置的是具体的长度也就是length的时候，当设置的值小于元素的最小的一边（长和宽中较小的值）的一半的时候，圆角会有相应的变化；当等于最小边的一半的时候，最小边就会变成一个半圆；当大于最小边的一半的时候，表现形式依然是之前的最小边变成半圆，不会将圆角继续扩大。</p>
+<p>当以百分比来设置圆角的时候，当设置的是0%——50%之间的数值的时候，圆角会随着数值的增长而扩大；当为50%的时候，元素会变成椭圆；当数值大于50%的时候，元素依旧为椭圆，而且圆角不会继续扩大。</p>
+<p>两者语义上看上去挺相同的，但是实际效果不一样，以length设置圆角的时候，当设置为最小边的一半的时候，最长边中依然会有一段线段是直线，而以百分比设置的时候，设置为50%的时候，是元素整体变为椭圆，不论是最小边还是最长边都没有直线段，这就是两者的差别。</p>
+<p>但是如果要设置的元素是圆形的话，则设置元素的宽度的一半或者50%的时候，表现形式是一致的。</p>
+<p>下面给的例子主要是为了演示在长方形的情况下，设置圆角的时候，以length和%设置圆角的不同之处（填写相应的数据，然后点击相应的更改样式按钮即可）。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;border-radius的length和%的区别&lt;/title&gt;
+    &lt;style&gt;
+        .content {width: 500px;height: 240px}
+        .content h1 {font-size: 14px;}    
+        .change {width: 100px;height: 16px;margin: 0 20px 20px 0;display: inline-block;}
+        .change-length-show,.change-number-show {width: 100px;height: 150px;background-color: red;}
+        button {margin-left: 20px;}
+    &lt;/style&gt;
+    &lt;script src=&quot;http://apps.bdimg.com/libs/jquery/1.11.3/jquery.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;content&quot;&gt;
+    &lt;h1&gt;length控制border-radius&lt;/h1&gt;
+    &lt;div&gt;
+        &lt;input type=&quot;text&quot; name=&quot;length&quot; class=&quot;change&quot; id=&quot;length&quot;&gt;px&lt;button id=&quot;change-length&quot;&gt;更改样式&lt;/button&gt;
+        &lt;div class=&quot;change-length-show&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+    &lt;h1&gt;%控制border-radius&lt;/h1&gt;
+    &lt;div&gt;
+        &lt;input type=&quot;text&quot; name=&quot;length&quot; class=&quot;change&quot; id=&quot;number&quot;&gt;%&lt;button id=&quot;change-number&quot;&gt;更改样式&lt;/button&gt;
+        &lt;div class=&quot;change-number-show&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+$(&quot;#change-length&quot;).on(&apos;click&apos;, function() {
+    var length = $(&quot;#length&quot;).val();
+    length = length ? length : 0;
+    $(&quot;.change-length-show&quot;).css(&quot;border-radius&quot;, length + &quot;px&quot;);
+});
+$(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
+    var number = $(&quot;#number&quot;).val();
+    number = number ? number : 0;
+    $(&quot;.change-number-show&quot;).css(&quot;border-radius&quot;, number + &quot;%&quot;);
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4bfo7ya0004tsr03j0ced38" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/radius-css3-圆角/">radius css3 圆角</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-cursor的所有样式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/23/cursor的所有样式/" class="article-date">
@@ -227,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj49zxuff0001wwr0r2hkgdsk" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj4bfo7ze000atsr06rujf9c2" class="article-share-link">分享</a>
       
       
       
@@ -535,7 +651,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/input-type所有功能/" data-id="cj49zxufo0003wwr086s1os1v" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/input-type所有功能/" data-id="cj4bfo80p000ctsr08i8855hj" class="article-share-link">分享</a>
       
       
       
@@ -614,7 +730,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj49zxug50005wwr01w9nyfni" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj4bfo7xk0001tsr07w6lyygh" class="article-share-link">分享</a>
       
       
       
@@ -678,7 +794,7 @@ function urlArgs(){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj49zxufk0002wwr0hfzbs05t" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4bfo7y20002tsr0o6zheezd" class="article-share-link">分享</a>
       
       
       
@@ -729,7 +845,7 @@ function urlArgs(){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/hello-world/" data-id="cj49zxuf70000wwr0r0d52abc" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/hello-world/" data-id="cj4bfo7xc0000tsr03r5clghg" class="article-share-link">分享</a>
       
       
       
@@ -820,7 +936,7 @@ var e = factorial(4); //24
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" data-id="cj49zxugd0006wwr0oxod91y4" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" data-id="cj4bfo80h000btsr0pgusc755" class="article-share-link">分享</a>
       
       
       
@@ -871,7 +987,7 @@ var e = factorial(4); //24
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a>
+      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/radius-css3-圆角/" style="font-size: 14px;">radius css3 圆角</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a>
     </div>
   </div>
 
@@ -881,6 +997,10 @@ var e = factorial(4); //24
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/24/border-radius的趣味妙谈/">border-radius的趣味妙谈</a>
+          </li>
         
           <li>
             <a href="/2017/06/23/cursor的所有样式/">cursor的所有样式</a>
@@ -898,10 +1018,6 @@ var e = factorial(4); //24
             <a href="/2017/06/23/获取location对象中search属性中的参数/">获取location对象中search属性中的参数</a>
           </li>
         
-          <li>
-            <a href="/2017/06/23/hello-world/">Hello World</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -911,7 +1027,7 @@ var e = factorial(4); //24
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">6</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
