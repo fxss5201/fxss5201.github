@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>代码实现添加联系人——Vcard | 樊小书生——博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在草料二维码上面看到有生成名片的二维码，也就是http://cli.im/news/vcard，生成二维码之后，手机端的浏览器或者微信扫描之后可以直接在页面中将联系人保存到手机的通讯录内，感觉好神奇，就看了一下，比如说，下面这就是我生成的一个二维码： 扫面上面的二维码可以看到如下内容（各种联系方式都属于随手所填）： 这就和手机通讯录很像了，点击保存到通讯录，会弹出一个二维码，识别之后，再次保存就可">
+<meta name="keywords" content="二维码 通讯录 浏览器 手机 微信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码实现添加联系人——Vcard">
+<meta property="og:url" content="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/index.html">
+<meta property="og:site_name" content="樊小书生——博客">
+<meta property="og:description" content="在草料二维码上面看到有生成名片的二维码，也就是http://cli.im/news/vcard，生成二维码之后，手机端的浏览器或者微信扫描之后可以直接在页面中将联系人保存到手机的通讯录内，感觉好神奇，就看了一下，比如说，下面这就是我生成的一个二维码： 扫面上面的二维码可以看到如下内容（各种联系方式都属于随手所填）： 这就和手机通讯录很像了，点击保存到通讯录，会弹出一个二维码，识别之后，再次保存就可">
+<meta property="og:image" content="http://img.blog.csdn.net/20170420205042734?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170420205336066?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170420211111282?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-06-24T16:25:25.747Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码实现添加联系人——Vcard">
+<meta name="twitter:description" content="在草料二维码上面看到有生成名片的二维码，也就是http://cli.im/news/vcard，生成二维码之后，手机端的浏览器或者微信扫描之后可以直接在页面中将联系人保存到手机的通讯录内，感觉好神奇，就看了一下，比如说，下面这就是我生成的一个二维码： 扫面上面的二维码可以看到如下内容（各种联系方式都属于随手所填）： 这就和手机通讯录很像了，点击保存到通讯录，会弹出一个二维码，识别之后，再次保存就可">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170420205042734?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="樊小书生——博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">樊小书生——博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">多看代码，多看书，付出总会有收获的。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-代码实现添加联系人——Vcard" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/25/代码实现添加联系人——Vcard/" class="article-date">
+  <time datetime="2017-06-24T16:21:37.000Z" itemprop="datePublished">2017-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      代码实现添加联系人——Vcard
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>在草料二维码上面看到有生成名片的二维码，也就是<a href="http://cli.im/news/vcard，生成二维码之后，手机端的浏览器或者微信扫描之后可以直接在页面中将联系人保存到手机的通讯录内，感觉好神奇，就看了一下，比如说，下面这就是我生成的一个二维码：" target="_blank" rel="external">http://cli.im/news/vcard，生成二维码之后，手机端的浏览器或者微信扫描之后可以直接在页面中将联系人保存到手机的通讯录内，感觉好神奇，就看了一下，比如说，下面这就是我生成的一个二维码：</a><br><img src="http://img.blog.csdn.net/20170420205042734?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>扫面上面的二维码可以看到如下内容（各种联系方式都属于随手所填）：<br><img src="http://img.blog.csdn.net/20170420205336066?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>这就和手机通讯录很像了，点击保存到通讯录，会弹出一个二维码，识别之后，再次保存就可以直接保存到手机通讯录。</p>
+<p>在预览界面界面中（电脑端）我直接点击保存到通讯录的时候竟然下载了一个文件，如下是文件的内容（内容有点多，大家看关键的就可以了，中间那一大段实际上就是base64）：</p>
+<pre><code>BEGIN:VCARD
+VERSION:3.0
+N:樊小书生
+ORG:公司
+TITLE:前端工程师
+PHOTO;ENCODING=BASE64;TYPE=JPEG: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
+ADR;TYPE=WORK:;;上海市静安区
+TEL;TYPE=CELL,VOICE:13211111111
+TEL;TYPE=WORK,VOICE:12345678
+item1.TEL:87654321
+item1.X-ABLABEL:公司座机
+EMAIL;TYPE=PREF,INTERNET:941499629@qq.com
+URL;WORK:http://v.2w.ma/Mbdhrz
+X-QQ:941499629
+ADR;TYPE=微信:;;941499629;;;;
+NOTE;ENCODING=QUOTED-PRINTABLE:我是一名前端开发人员  
+END:VCARD
+</code></pre><p>VCard？我瞬间有点懵，然后百度了一下<a href="http://baike.so.com/doc/5292369-5526918.html，这是上面对Vcard的描述：" target="_blank" rel="external">http://baike.so.com/doc/5292369-5526918.html，这是上面对Vcard的描述：</a><br>        vCard 规范容许公开交换个人数据交换 (Personal Data Interchange PDI) 信息，在传统纸质商业名片可找到这些信息。规范定义电子名片(或叫vCard)的格式。 vCard 规范可作为各种应用或系统之间的交换格式。定义的格式与传送的方法无关。传送交换可能是文件系统，点对点交换的公共电话网络，以有线网络或无线传送的方式。用户能在互联网上直接利用vCard。电子邮件能转发在vCard中人信息。</p>
+<p>查看<a href="http://baike.so.com/doc/5292369-5526918.html就可以看到对Vcard很详细的介绍，我就不多说了。" target="_blank" rel="external">http://baike.so.com/doc/5292369-5526918.html就可以看到对Vcard很详细的介绍，我就不多说了。</a></p>
+<p>将上面的文件直接发送到手机上，打开的时候选择通讯录，就可以直接生成一个添加联系人的面板（有的系统是直接导入一位联系人），并且所有内容都和上面的一样，如下所示（由于各个型号、版本的手机可能会有点差异，不过大部分内容都是一样的）：<br><img src="http://img.blog.csdn.net/20170420211111282?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>这样就可以直接导入一位联系人。这篇主要是为了引出Vcard的介绍，之后会有篇更棒的直接生成扫描之后可以直接保存到通讯录的二维码，以及生成方式。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4bhyhdd0005x8r04hqnsby3" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二维码-通讯录-浏览器-手机-微信/">二维码 通讯录 浏览器 手机 微信</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/24/border-radius的趣味妙谈/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">border-radius的趣味妙谈</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+           <div id="gitment_comments"></div>
+    
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title recent-posts">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/代码实现添加联系人——Vcard/">代码实现添加联系人——Vcard</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/border-radius的趣味妙谈/">border-radius的趣味妙谈</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/23/cursor的所有样式/">cursor的所有样式</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/23/input-type所有功能/"> input type所有功能</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/">计时器——setTimeout、setInterval相关的精悍代码</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2017 樊玉顺&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;723107234@qq.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script> 
+  <script>
+  var gitment = new Gitment({
+    // id: '页面 ID', // 可选。默认为 location.href
+    owner: 'giscafer',
+    repo: 'giscafer.github.io',
+    oauth: {
+    client_id: '7e5dd6cdb9xxaxa4cf91a',
+    client_secret: '97f37d5c27c4a511xx4fxx623d391c85cb97f8',
+    }
+  })
+  gitment.render(document.getElementById("gitment_comments"))
+</script>
+
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
