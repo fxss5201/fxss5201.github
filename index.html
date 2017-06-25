@@ -72,6 +72,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-使用slice-简单封装实现将数组分割为几个等长度的子数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/" class="article-date">
+  <time datetime="2017-06-25T02:34:32.000Z" itemprop="datePublished">2017-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/">使用slice()简单封装实现将数组分割为几个等长度的子数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>使用数组的时候，我们有时候希望将一个数组分成几个相同长度的子数组，使用slice()方法可以返回一个子数组，所以我们可以将slice()再进行封装一下，以实现上面的功能。</p>
+<p>首先我们先来看一下slice()方法：</p>
+<h2 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h2><ol>
+<li>定义和用法<br>slice() 方法可从已有的数组中返回选定的元素。</li>
+<li>语法<br>arrayObject.slice(start,end)<br>| 参数| 描述 |<br>| ————- |:————|<br>| start | 必需。规定从何处开始选取。如果是负数，那么它规定从数组尾部开始算起的位置。也就是说，-1 指最后一个元素，-2 指倒数第二个元素，以此类推。 |<br>| end | 可选。规定从何处结束选取。该参数是数组片断结束处的数组下标。如果没有指定该参数，那么切分的数组包含从 start 到数组结束的所有元素。如果这个参数是负数，那么它规定的是从数组尾部开始算起的元素。|</li>
+<li>返回值<br>返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。</li>
+<li>说明<br>请注意，该方法并不会修改数组，而是返回一个子数组。如果想删除数组中的一段元素，应该使用方法 Array.splice()。</li>
+<li>提示和注释<br>注释：您可使用负值从数组的尾部选取元素。<br>注释：如果 end 未被规定，那么 slice() 方法会选取从 start 到数组结尾的所有元素。</li>
+</ol>
+<h2 id="封装slice"><a href="#封装slice" class="headerlink" title="封装slice()"></a>封装slice()</h2><p>加入现在有一个数组[1,2,3,4,5,6,7,8,9]，将其分为长度为4的子数组<br>子数组1：[1,2,3,4]     是从数组下标0–&gt;3<br>子数组2：[5,6,7,8]     是从数组下标4–&gt;7<br>子数组3：[9]     是从数组下标8，因为不满4个<br>从上面我们可以看到，一共分为3个数组，所以我们可以使用循环来进行封装。</p>
+<pre><code>/*
+ * 将一个数组分成几个同等长度的数组
+ * array[分割的原数组]
+ * size[每个子数组的长度]
+ */
+function sliceArray(array, size) {
+    var result = [];
+    for (var x = 0; x &lt; Math.ceil(array.length / size); x++) {
+        var start = x * size;
+        var end = start + size;
+        result.push(array.slice(start, end));
+    }
+    return result;
+}    
+</code></pre><p>下面我们来测试一个例子：</p>
+<pre><code>var array = [1,2,3,4,5,6,7,8,9];
+var array = sliceArray(array, 4);
+console.log(array);
+</code></pre><p>输出：<br><img src="http://img.blog.csdn.net/20170328212325283?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>完美的实现了上面的功能。</p>
+<h2 id="将几个数组合并为一个数组concat"><a href="#将几个数组合并为一个数组concat" class="headerlink" title="将几个数组合并为一个数组concat()"></a>将几个数组合并为一个数组concat()</h2><ol>
+<li>定义和用法<br>concat() 方法用于连接两个或多个数组。<br>该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。</li>
+<li>语法<br>arrayObject.concat(arrayX,arrayX,……,arrayX)<br>| 参数| 描述 |<br>| ————- |:————|<br>| arrayX| 必需。该参数可以是具体的值，也可以是数组对象。可以是任意多个。 |</li>
+<li>返回值<br>返回一个新的数组。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组。</li>
+</ol>
+<p>例如：</p>
+<pre><code>var arr1 = [1,2,3];
+var arr2 = [4,5,6];
+var arr = [];
+arr.concat(arr1, arr2); //输出[1, 2, 3, 4, 5, 6]
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/" data-id="cj4c3tf100008ecr0y2z429eq" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaScript-slice-concat-数组分割-数组合并/">javaScript slice concat 数组分割 数组合并</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-将数组中的对象按照浏览器的x-y轴的显示方式进行排序" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" class="article-date">
@@ -146,15 +228,17 @@ console.log(getArray);
 &lt;/script&gt;    
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><p>输出结果：<br><img src="http://img.blog.csdn.net/20170328224651586?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+</code></pre><p>输出结果：<br><img src="http://img.blog.csdn.net/20170328224651586?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="输出结果"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" data-id="cj4c3i0tc00042or0avig4ava" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" data-id="cj4c3tf130009ecr0ffxakph8" class="article-share-link">分享</a>
       
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器-对象-排序-javaScript/">浏览器 对象 排序 javaScript</a></li></ul>
+
     </footer>
   </div>
   
@@ -216,7 +300,7 @@ END:VCARD
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4c3i0v4000i2or0jp3v91ih" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4c3tf0s0005ecr08b6rgyec" class="article-share-link">分享</a>
       
       
       
@@ -332,7 +416,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4c3i0oz00002or0exlan5wx" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4c3tezp0000ecr0s39racdh" class="article-share-link">分享</a>
       
       
       
@@ -501,7 +585,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj4c3i0se00012or0e0v7piji" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj4c3tezy0001ecr0te7a9m1w" class="article-share-link">分享</a>
       
       
       
@@ -809,7 +893,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/input-type所有功能/" data-id="cj4c3i0sz00032or0minc553t" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/input-type所有功能/" data-id="cj4c3tf0k0004ecr05eddnqn9" class="article-share-link">分享</a>
       
       
       
@@ -888,7 +972,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj4c3i0to00082or0m2cqz0a5" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj4c3tf1d000decr016zb39tr" class="article-share-link">分享</a>
       
       
       
@@ -952,7 +1036,7 @@ function urlArgs(){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4c3i0tk00052or01ogdxtzo" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4c3tf1a000aecr0wzi6xfud" class="article-share-link">分享</a>
       
       
       
@@ -1003,7 +1087,7 @@ function urlArgs(){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/hello-world/" data-id="cj4c3i0v1000h2or0hzod7x6n" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/hello-world/" data-id="cj4c3tf0h0003ecr0gbwkzw18" class="article-share-link">分享</a>
       
       
       
@@ -1094,7 +1178,7 @@ var e = factorial(4); //24
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" data-id="cj4c3i0ts00092or0nqbyn8x5" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" data-id="cj4c3tf1f000eecr0moxb911v" class="article-share-link">分享</a>
       
       
       
@@ -1145,7 +1229,7 @@ var e = factorial(4); //24
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/radius-css3-圆角/" style="font-size: 14px;">radius css3 圆角</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/二维码-通讯录-浏览器-手机-微信/" style="font-size: 14px;">二维码 通讯录 浏览器 手机 微信</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a>
+      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/javaScript-slice-concat-数组分割-数组合并/" style="font-size: 14px;">javaScript slice concat 数组分割 数组合并</a> <a href="/tags/radius-css3-圆角/" style="font-size: 14px;">radius css3 圆角</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/二维码-通讯录-浏览器-手机-微信/" style="font-size: 14px;">二维码 通讯录 浏览器 手机 微信</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a> <a href="/tags/浏览器-对象-排序-javaScript/" style="font-size: 14px;">浏览器 对象 排序 javaScript</a>
     </div>
   </div>
 
@@ -1155,6 +1239,10 @@ var e = factorial(4); //24
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/">使用slice()简单封装实现将数组分割为几个等长度的子数组</a>
+          </li>
         
           <li>
             <a href="/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/">将数组中的对象按照浏览器的x/y轴的显示方式进行排序</a>
@@ -1172,10 +1260,6 @@ var e = factorial(4); //24
             <a href="/2017/06/23/cursor的所有样式/">cursor的所有样式</a>
           </li>
         
-          <li>
-            <a href="/2017/06/23/input-type所有功能/"> input type所有功能</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1185,7 +1269,7 @@ var e = factorial(4); //24
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">10</span></li></ul>
     </div>
   </div>
 
