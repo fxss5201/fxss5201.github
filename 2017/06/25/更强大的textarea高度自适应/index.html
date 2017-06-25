@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>更强大的textarea高度自适应 | 樊小书生——博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="之前说的textarea高度自适应是textarea在初始化的时候，将textarea的高度设置为scrollHeight的高度来实现其显示的时候高度自适应，但是大家应该都知道，textarea中的内容是可以修改的（除非设置readonly），通过scrollHeight来设置高度的方法是没办法实现textarea的高度在修改的时候来实现自适应的。 那有没有办法来实现初始化的textarea的高度">
+<meta name="keywords" content="javaScript textarea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="更强大的textarea高度自适应">
+<meta property="og:url" content="http://yoursite.com/2017/06/25/更强大的textarea高度自适应/index.html">
+<meta property="og:site_name" content="樊小书生——博客">
+<meta property="og:description" content="之前说的textarea高度自适应是textarea在初始化的时候，将textarea的高度设置为scrollHeight的高度来实现其显示的时候高度自适应，但是大家应该都知道，textarea中的内容是可以修改的（除非设置readonly），通过scrollHeight来设置高度的方法是没办法实现textarea的高度在修改的时候来实现自适应的。 那有没有办法来实现初始化的textarea的高度">
+<meta property="og:image" content="http://img.blog.csdn.net/20170318195436369?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170318195501830?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170318195528689?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170318195556627?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-06-25T09:46:30.164Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="更强大的textarea高度自适应">
+<meta name="twitter:description" content="之前说的textarea高度自适应是textarea在初始化的时候，将textarea的高度设置为scrollHeight的高度来实现其显示的时候高度自适应，但是大家应该都知道，textarea中的内容是可以修改的（除非设置readonly），通过scrollHeight来设置高度的方法是没办法实现textarea的高度在修改的时候来实现自适应的。 那有没有办法来实现初始化的textarea的高度">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170318195436369?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="樊小书生——博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">樊小书生——博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">多看代码，多看书，付出总会有收获的。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-更强大的textarea高度自适应" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/25/更强大的textarea高度自适应/" class="article-date">
+  <time datetime="2017-06-25T09:45:13.000Z" itemprop="datePublished">2017-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      更强大的textarea高度自适应
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>之前说的textarea高度自适应是textarea在初始化的时候，将textarea的高度设置为scrollHeight的高度来实现其显示的时候高度自适应，但是大家应该都知道，textarea中的内容是可以修改的（除非设置readonly），通过scrollHeight来设置高度的方法是没办法实现textarea的高度在修改的时候来实现自适应的。</p>
+<p>那有没有办法来实现初始化的textarea的高度自适应，并且在修改的时候也可以实现高度自适应呢？</p>
+<p>下面我们来看看（大家也可以把代码复制到本地运行）：</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;textarea高度自适应&lt;/title&gt;
+&lt;script src=&quot;../jquery-1.11.3.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;textarea name=&quot;text&quot; style=&quot;width: 300px;&quot;&gt;textarea是一个文本框，谷歌、IE、Opera默认显示两行文本，火狐默认显示3行文本，行数超过两行是会出现滚动条，可以自己设定设定一些行数来进行强制多少行进行显示。textarea是一个文本框，谷歌、IE、Opera默认显示两行文本，火狐默认显示3行文本，行数超过两行是会出现滚动条，可以自己设定设定一些行数来进行强制多少行进行显示。textarea是一个文本框，谷歌、IE、Opera默认显示两行文本，火狐默认显示3行文本，行数超过两行是会出现滚动条，可以自己设定设定一些行数来进行强制多少行进行显示。textarea是一个文本框，谷歌、IE、Opera默认显示两行文本，火狐默认显示3行文本，行数超过两行是会出现滚动条，可以自己设定设定一些行数来进行强制多少行进行显示。&lt;/textarea&gt;
+&lt;textarea name=&quot;text&quot; style=&quot;width: 300px;&quot;&gt;textarea是一个文本框，谷歌、IE、Opera默认显示两行文本，火狐默认显示3行文本，行数超过两行是会出现滚动条，可以自己设定设定一些行数来进行强制多少行进行显示。textarea是一个文本框，谷歌、IE、Opera默认显示两行文本，&lt;/textarea&gt;
+&lt;script&gt;
+$(function () {
+    // 为每一个textarea绑定事件使其高度自适应
+    $.each($(&quot;textarea&quot;), function(i, n){
+        autoTextarea($(n)[0]);
+    });
+})
+/**
+ * 文本框根据输入内容自适应高度
+ * {HTMLElement}   输入框元素
+ * {Number}        设置光标与输入框保持的距离(默认0)
+ * {Number}        设置最大高度(可选)
+ */
+var autoTextarea = function (elem, extra, maxHeight) {
+    extra = extra || 0;
+    var isFirefox = !!document.getBoxObjectFor || &apos;mozInnerScreenX&apos; in window,
+    isOpera = !!window.opera &amp;&amp; !!window.opera.toString().indexOf(&apos;Opera&apos;),
+        addEvent = function (type, callback) {
+            elem.addEventListener ?
+                elem.addEventListener(type, callback, false) :
+                elem.attachEvent(&apos;on&apos; + type, callback);
+        },
+        getStyle = elem.currentStyle ? 
+        function (name) {
+            var val = elem.currentStyle[name];
+            if (name === &apos;height&apos; &amp;&amp; val.search(/px/i) !== 1) {
+                var rect = elem.getBoundingClientRect();
+                return rect.bottom - rect.top -
+                       parseFloat(getStyle(&apos;paddingTop&apos;)) -
+                       parseFloat(getStyle(&apos;paddingBottom&apos;)) + &apos;px&apos;;       
+            };
+            return val;
+        } : function (name) {
+            return getComputedStyle(elem, null)[name];
+        },
+    minHeight = parseFloat(getStyle(&apos;height&apos;));
+    elem.style.resize = &apos;both&apos;;//如果不希望使用者可以自由的伸展textarea的高宽可以设置其他值
+
+    var change = function () {
+        var scrollTop, height,
+            padding = 0,
+            style = elem.style;
+
+        if (elem._length === elem.value.length) return;
+        elem._length = elem.value.length;
+
+        if (!isFirefox &amp;&amp; !isOpera) {
+            padding = parseInt(getStyle(&apos;paddingTop&apos;)) + parseInt(getStyle(&apos;paddingBottom&apos;));
+        };
+        scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+
+        elem.style.height = minHeight + &apos;px&apos;;
+        if (elem.scrollHeight &gt; minHeight) {
+            if (maxHeight &amp;&amp; elem.scrollHeight &gt; maxHeight) {
+                height = maxHeight - padding;
+                style.overflowY = &apos;auto&apos;;
+            } else {
+                height = elem.scrollHeight - padding;
+                style.overflowY = &apos;hidden&apos;;
+            };
+            style.height = height + extra + &apos;px&apos;;
+            scrollTop += parseInt(style.height) - elem.currHeight;
+            document.body.scrollTop = scrollTop;
+            document.documentElement.scrollTop = scrollTop;
+            elem.currHeight = parseInt(style.height);
+        };
+    };
+
+    addEvent(&apos;propertychange&apos;, change);
+    addEvent(&apos;input&apos;, change);
+    addEvent(&apos;focus&apos;, change);
+    change();
+};
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>下面来看看效果：<br>IE<br><img src="http://img.blog.csdn.net/20170318195436369?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>谷歌<br><img src="http://img.blog.csdn.net/20170318195501830?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>火狐<br><img src="http://img.blog.csdn.net/20170318195528689?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>Opera<br><img src="http://img.blog.csdn.net/20170318195556627?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>从上面的结果可以看到，利用上面的代码就可以实现初始化的时候textarea的高度自适应并且textarea在修改的时候也可以实现其高度自适应。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/25/更强大的textarea高度自适应/" data-id="cj4cj77gv000j3or03ofvxzef" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaScript-textarea/">javaScript textarea</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/25/从一段字符串中快速找出某个字母或字符串出现的次数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          从一段字符串中快速找出某个字母或字符串出现的次数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/25/textarea的高度自适应/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">textarea的高度自适应</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+           <div id="gitment_comments"></div>
+    
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title recent-posts">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/从一段字符串中快速找出某个字母或字符串出现的次数/">从一段字符串中快速找出某个字母或字符串出现的次数</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/更强大的textarea高度自适应/">更强大的textarea高度自适应</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/textarea的高度自适应/">textarea的高度自适应</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/一个循环实现新数组n位值是老数组前n位的和/">一个循环实现新数组n位值是老数组前n位的和</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/chrome控制台中console的强大/">chrome控制台中console的强大</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2017 樊玉顺&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;723107234@qq.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script> 
+  <script>
+  var gitment = new Gitment({
+    // id: '页面 ID', // 可选。默认为 location.href
+    owner: 'giscafer',
+    repo: 'giscafer.github.io',
+    oauth: {
+    client_id: '7e5dd6cdb9xxaxa4cf91a',
+    client_secret: '97f37d5c27c4a511xx4fxx623d391c85cb97f8',
+    }
+  })
+  gitment.render(document.getElementById("gitment_comments"))
+</script>
+
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
