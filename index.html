@@ -72,6 +72,78 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-一个循环实现新数组n位值是老数组前n位的和" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/25/一个循环实现新数组n位值是老数组前n位的和/" class="article-date">
+  <time datetime="2017-06-25T09:36:00.000Z" itemprop="datePublished">2017-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/25/一个循环实现新数组n位值是老数组前n位的和/">一个循环实现新数组n位值是老数组前n位的和</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>首先先解释一下题目，什么叫做新数组n位值是老数组前n位的和，下面举两个例子就明了了，</p>
+<p>老数组：<code>var old = [1,2,3,4]</code></p>
+<p>新数组：<code>var new = [1,3,6,10]</code></p>
+<p>就是：</p>
+<ol>
+<li>新数组的第一位等于老数组的第一位<code>new[0] = old[0]</code></li>
+<li>新数组的第二位等于老数组的前两位之和<code>new[1] = old[0] + old[1]</code></li>
+<li>新数组的第三位等于老数组的前三位之和<code>new[2] = old[0] + old[1] + old[2]</code></li>
+<li>……</li>
+</ol>
+<p>相信很多人的第一反应都是循环套循环，如下：</p>
+<pre><code>var oldArray = [1,2,3,4];
+var newArray = [];
+for(var i = 1; i &lt;= oldArray.length; i++){
+    var newArrayEach = 0;
+    for(var j = 0; j &lt; i; j++){
+        newArrayEach += oldArray[j];
+    }
+    newArray.push(newArrayEach);
+}
+console.log(newArray);//输出结果[1, 3, 6, 10]
+</code></pre><p>那么有没有一些简单方法来实现呢？<br>下面是仅使用一个循环来实现：</p>
+<pre><code>var oldArray = [1,2,3,4];
+var newArray = [0];
+for (var i = 0; i &lt; oldArray.length; i++) {
+    newArray.push(oldArray[i] + newArray[i]);
+}
+newArray = newArray.slice(1);
+console.log(newArray);//输出结果[1, 3, 6, 10]
+</code></pre><p>下面这种效率是不是比上面哪种方法高多了，很多方法要灵活运用，才能写出更好的代码。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/25/一个循环实现新数组n位值是老数组前n位的和/" data-id="cj4civ31v00082kr0xbztp9f2" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaScript-数组/">javaScript 数组</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-chrome控制台中console的强大" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/25/chrome控制台中console的强大/" class="article-date">
@@ -144,7 +216,7 @@ console.timeEnd(&quot;Array initialize&quot;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/chrome控制台中console的强大/" data-id="cj4ciovh60001pwr0dc41qq3f" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/chrome控制台中console的强大/" data-id="cj4civ30l00002kr0zcpps5m3" class="article-share-link">分享</a>
       
       
       
@@ -226,7 +298,7 @@ arr.concat(arr1, arr2); //输出[1, 2, 3, 4, 5, 6]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/" data-id="cj4ciovi10006pwr03hosp9tf" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/" data-id="cj4civ326000b2kr0mk8xf57h" class="article-share-link">分享</a>
       
       
       
@@ -319,7 +391,7 @@ console.log(getArray);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" data-id="cj4ciovje000npwr05e1575k6" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" data-id="cj4civ327000d2kr01gr7bwse" class="article-share-link">分享</a>
       
       
       
@@ -386,7 +458,7 @@ END:VCARD
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4ciovka000qpwr0y9v3ys6o" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4civ31z00092kr0jd4sn5x3" class="article-share-link">分享</a>
       
       
       
@@ -502,7 +574,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4ciovia0009pwr0zagbxoz0" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4civ31b00032kr00wm3afoq" class="article-share-link">分享</a>
       
       
       
@@ -671,7 +743,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj4ciovih000apwr0j6bcw0t7" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj4civ30t00012kr0q2sd09cx" class="article-share-link">分享</a>
       
       
       
@@ -979,7 +1051,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/input-type所有功能/" data-id="cj4ciovhz0005pwr0ya4jc6yu" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/input-type所有功能/" data-id="cj4civ31m00052kr0vep5vjx9" class="article-share-link">分享</a>
       
       
       
@@ -1058,7 +1130,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj4ciovhb0002pwr0wo9hzxeo" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj4civ32f000h2kr0sixyeixy" class="article-share-link">分享</a>
       
       
       
@@ -1122,61 +1194,12 @@ function urlArgs(){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4ciovhx0004pwr01mnyp0kz" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4civ32c000f2kr08kdw2uuj" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/url-搜索-函数/">url 搜索 函数</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/23/hello-world/" class="article-date">
-  <time datetime="2017-06-23T13:25:36.588Z" itemprop="datePublished">2017-06-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/23/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/hello-world/" data-id="cj4ciovgx0000pwr0j9hfg8nb" class="article-share-link">分享</a>
-      
-      
-      
     </footer>
   </div>
   
@@ -1226,7 +1249,7 @@ function urlArgs(){
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/javaScript-slice-concat-数组分割-数组合并/" style="font-size: 14px;">javaScript slice concat 数组分割 数组合并</a> <a href="/tags/radius-css3-圆角/" style="font-size: 14px;">radius css3 圆角</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/二维码-通讯录-浏览器-手机-微信/" style="font-size: 14px;">二维码 通讯录 浏览器 手机 微信</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a> <a href="/tags/浏览器-chrome-控制台-前端开发/" style="font-size: 14px;">浏览器 chrome 控制台 前端开发</a> <a href="/tags/浏览器-对象-排序-javaScript/" style="font-size: 14px;">浏览器 对象 排序 javaScript</a>
+      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/javaScript-slice-concat-数组分割-数组合并/" style="font-size: 14px;">javaScript slice concat 数组分割 数组合并</a> <a href="/tags/javaScript-数组/" style="font-size: 14px;">javaScript 数组</a> <a href="/tags/radius-css3-圆角/" style="font-size: 14px;">radius css3 圆角</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/二维码-通讯录-浏览器-手机-微信/" style="font-size: 14px;">二维码 通讯录 浏览器 手机 微信</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a> <a href="/tags/浏览器-chrome-控制台-前端开发/" style="font-size: 14px;">浏览器 chrome 控制台 前端开发</a> <a href="/tags/浏览器-对象-排序-javaScript/" style="font-size: 14px;">浏览器 对象 排序 javaScript</a>
     </div>
   </div>
 
@@ -1236,6 +1259,10 @@ function urlArgs(){
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/25/一个循环实现新数组n位值是老数组前n位的和/">一个循环实现新数组n位值是老数组前n位的和</a>
+          </li>
         
           <li>
             <a href="/2017/06/25/chrome控制台中console的强大/">chrome控制台中console的强大</a>
@@ -1253,10 +1280,6 @@ function urlArgs(){
             <a href="/2017/06/25/代码实现添加联系人——Vcard/">代码实现添加联系人——Vcard</a>
           </li>
         
-          <li>
-            <a href="/2017/06/24/border-radius的趣味妙谈/">border-radius的趣味妙谈</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1266,7 +1289,7 @@ function urlArgs(){
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">11</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
