@@ -72,6 +72,97 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-将数组中的对象按照浏览器的x-y轴的显示方式进行排序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" class="article-date">
+  <time datetime="2017-06-25T02:27:19.000Z" itemprop="datePublished">2017-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/">将数组中的对象按照浏览器的x/y轴的显示方式进行排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>假如说现在有一组图片用绝对定位的方式进行显示，top/left值是随机排列的，也就是说按照文档流查找到的图片和浏览器显示的顺序不一致，这个时候我们就需要将数组中的对象按照浏览器的x/y轴的显示方式进行排序。</p>
+<p>浏览器的渲染是按照浏览器的x/y轴进行显示的，只有当一行显示完才会显示下一行，所以和我们现在写字的方式是一致的。</p>
+<p>实际上将数组中的对象按照浏览器的x/y轴的显示方式进行排序，也就是将数组中的对象按照x/y的两个属性值进行排序，并且x的优先级大于y的优先级（必须先按照x轴显示、再按照y轴显示）。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;将数组中的对象按照浏览器的x/y轴的显示方式进行排序&lt;/title&gt;
+    &lt;script src=&quot;jquery-1.11.3.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;
+var getArray = [];
+var array = [{index: 1, x: 1, y: 3},{index: 2, x: 3, y: 1},{index: 3, x: 2, y: 2},
+            {index: 4, x: 2, y: 1},{index: 5, x: 1, y: 2},{index: 6, x: 3, y: 3},
+            {index: 7, x: 3, y: 2},{index: 8, x: 2, y: 3},{index: 9, x: 1, y: 1}];
+array = array.sort(compare(&quot;x&quot;));
+// 此处的3表示一行显示几列
+array = sliceArray(array, 3);
+$.each(array, function(i, n){
+    n = n.sort(compare(&quot;y&quot;));
+    $.each(n, function(j, k){
+        getArray.push(k);
+    })
+})
+function compare(property){
+    return function(a,b){
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
+    }
+}
+/*
+ * 将一个数组分成几个同等长度的数组
+ * array[分割的原数组]
+ * size[每个子数组的长度]
+ */
+function sliceArray(array, size) {
+    var result = [];
+    for (var x = 0; x &lt; Math.ceil(array.length / size); x++) {
+        var start = x * size;
+        var end = start + size;
+        result.push(array.slice(start, end));
+    }
+    return result;
+}    
+console.log(getArray);
+&lt;/script&gt;    
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>输出结果：<br><img src="http://img.blog.csdn.net/20170328224651586?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" data-id="cj4c3i0tc00042or0avig4ava" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-代码实现添加联系人——Vcard" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/25/代码实现添加联系人——Vcard/" class="article-date">
@@ -125,7 +216,7 @@ END:VCARD
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4bi2dux0005bgr0916l4b3b" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4c3i0v4000i2or0jp3v91ih" class="article-share-link">分享</a>
       
       
       
@@ -241,7 +332,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4bi2du80000bgr0872fzn8f" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4c3i0oz00002or0exlan5wx" class="article-share-link">分享</a>
       
       
       
@@ -410,7 +501,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj4bi2dug0001bgr0esvnyq5j" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj4c3i0se00012or0e0v7piji" class="article-share-link">分享</a>
       
       
       
@@ -718,7 +809,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/input-type所有功能/" data-id="cj4bi2dut0004bgr06j8lel0h" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/input-type所有功能/" data-id="cj4c3i0sz00032or0minc553t" class="article-share-link">分享</a>
       
       
       
@@ -797,7 +888,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj4bi2dvh0009bgr0sbwig4q1" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj4c3i0to00082or0m2cqz0a5" class="article-share-link">分享</a>
       
       
       
@@ -861,7 +952,7 @@ function urlArgs(){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4bi2dvg0008bgr05ugwrfni" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4c3i0tk00052or01ogdxtzo" class="article-share-link">分享</a>
       
       
       
@@ -912,7 +1003,7 @@ function urlArgs(){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/hello-world/" data-id="cj4bi2dup0003bgr0oepq28l6" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/hello-world/" data-id="cj4c3i0v1000h2or0hzod7x6n" class="article-share-link">分享</a>
       
       
       
@@ -1003,7 +1094,7 @@ var e = factorial(4); //24
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" data-id="cj4bi2dvq000abgr0ldqxm5gl" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" data-id="cj4c3i0ts00092or0nqbyn8x5" class="article-share-link">分享</a>
       
       
       
@@ -1066,6 +1157,10 @@ var e = factorial(4); //24
       <ul>
         
           <li>
+            <a href="/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/">将数组中的对象按照浏览器的x/y轴的显示方式进行排序</a>
+          </li>
+        
+          <li>
             <a href="/2017/06/25/代码实现添加联系人——Vcard/">代码实现添加联系人——Vcard</a>
           </li>
         
@@ -1081,10 +1176,6 @@ var e = factorial(4); //24
             <a href="/2017/06/23/input-type所有功能/"> input type所有功能</a>
           </li>
         
-          <li>
-            <a href="/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/">计时器——setTimeout、setInterval相关的精悍代码</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1094,7 +1185,7 @@ var e = factorial(4); //24
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 

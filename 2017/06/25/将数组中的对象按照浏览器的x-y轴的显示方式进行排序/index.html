@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>获取location对象中search属性中的参数 | 樊小书生——博客</title>
+  <title>将数组中的对象按照浏览器的x/y轴的显示方式进行排序 | 樊小书生——博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生： // 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象 function urlArgs(){     var args = {};">
-<meta name="keywords" content="url 搜索 函数">
+  <meta name="description" content="假如说现在有一组图片用绝对定位的方式进行显示，top/left值是随机排列的，也就是说按照文档流查找到的图片和浏览器显示的顺序不一致，这个时候我们就需要将数组中的对象按照浏览器的x/y轴的显示方式进行排序。 浏览器的渲染是按照浏览器的x/y轴进行显示的，只有当一行显示完才会显示下一行，所以和我们现在写字的方式是一致的。 实际上将数组中的对象按照浏览器的x/y轴的显示方式进行排序，也就是将数组中的对">
 <meta property="og:type" content="article">
-<meta property="og:title" content="获取location对象中search属性中的参数">
-<meta property="og:url" content="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/index.html">
+<meta property="og:title" content="将数组中的对象按照浏览器的x&#x2F;y轴的显示方式进行排序">
+<meta property="og:url" content="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/index.html">
 <meta property="og:site_name" content="樊小书生——博客">
-<meta property="og:description" content="location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生： // 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象 function urlArgs(){     var args = {};">
-<meta property="og:updated_time" content="2017-06-23T14:15:06.312Z">
+<meta property="og:description" content="假如说现在有一组图片用绝对定位的方式进行显示，top/left值是随机排列的，也就是说按照文档流查找到的图片和浏览器显示的顺序不一致，这个时候我们就需要将数组中的对象按照浏览器的x/y轴的显示方式进行排序。 浏览器的渲染是按照浏览器的x/y轴进行显示的，只有当一行显示完才会显示下一行，所以和我们现在写字的方式是一致的。 实际上将数组中的对象按照浏览器的x/y轴的显示方式进行排序，也就是将数组中的对">
+<meta property="og:image" content="http://img.blog.csdn.net/20170328224651586?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-06-25T02:28:32.195Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="获取location对象中search属性中的参数">
-<meta name="twitter:description" content="location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生： // 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象 function urlArgs(){     var args = {};">
+<meta name="twitter:title" content="将数组中的对象按照浏览器的x&#x2F;y轴的显示方式进行排序">
+<meta name="twitter:description" content="假如说现在有一组图片用绝对定位的方式进行显示，top/left值是随机排列的，也就是说按照文档流查找到的图片和浏览器显示的顺序不一致，这个时候我们就需要将数组中的对象按照浏览器的x/y轴的显示方式进行排序。 浏览器的渲染是按照浏览器的x/y轴进行显示的，只有当一行显示完才会显示下一行，所以和我们现在写字的方式是一致的。 实际上将数组中的对象按照浏览器的x/y轴的显示方式进行排序，也就是将数组中的对">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170328224651586?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
     <link rel="alternate" href="/atom.xml" title="樊小书生——博客" type="application/atom+xml">
   
@@ -72,10 +73,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-获取location对象中search属性中的参数" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-将数组中的对象按照浏览器的x-y轴的显示方式进行排序" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/06/23/获取location对象中search属性中的参数/" class="article-date">
-  <time datetime="2017-06-23T14:11:25.000Z" itemprop="datePublished">2017-06-23</time>
+    <a href="/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" class="article-date">
+  <time datetime="2017-06-25T02:27:19.000Z" itemprop="datePublished">2017-06-25</time>
 </a>
     
   </div>
@@ -86,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      获取location对象中search属性中的参数
+      将数组中的对象按照浏览器的x/y轴的显示方式进行排序
     </h1>
   
 
@@ -96,57 +97,75 @@
       
         <!-- Table of Contents -->
         
-        <p>location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生：</p>
-<pre><code>// 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象
-function urlArgs(){
-    var args = {};
-    var query = location.search.substring(1);
-    var pairs = query.split(&quot;&amp;&quot;);
-    for(var i = 0;i &lt; pairs.length; i++){
-        var pos = pairs[i].indexOf(&quot;=&quot;);
-        if(pos == -1) continue;
-        var name = pairs[i].substring(0, pos);
-        var value = pairs[i].substring(pos + 1);
-        value = decodeURIComponent(value);
-        args[name] = value;
+        <p>假如说现在有一组图片用绝对定位的方式进行显示，top/left值是随机排列的，也就是说按照文档流查找到的图片和浏览器显示的顺序不一致，这个时候我们就需要将数组中的对象按照浏览器的x/y轴的显示方式进行排序。</p>
+<p>浏览器的渲染是按照浏览器的x/y轴进行显示的，只有当一行显示完才会显示下一行，所以和我们现在写字的方式是一致的。</p>
+<p>实际上将数组中的对象按照浏览器的x/y轴的显示方式进行排序，也就是将数组中的对象按照x/y的两个属性值进行排序，并且x的优先级大于y的优先级（必须先按照x轴显示、再按照y轴显示）。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;将数组中的对象按照浏览器的x/y轴的显示方式进行排序&lt;/title&gt;
+    &lt;script src=&quot;jquery-1.11.3.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;
+var getArray = [];
+var array = [{index: 1, x: 1, y: 3},{index: 2, x: 3, y: 1},{index: 3, x: 2, y: 2},
+            {index: 4, x: 2, y: 1},{index: 5, x: 1, y: 2},{index: 6, x: 3, y: 3},
+            {index: 7, x: 3, y: 2},{index: 8, x: 2, y: 3},{index: 9, x: 1, y: 1}];
+array = array.sort(compare(&quot;x&quot;));
+// 此处的3表示一行显示几列
+array = sliceArray(array, 3);
+$.each(array, function(i, n){
+    n = n.sort(compare(&quot;y&quot;));
+    $.each(n, function(j, k){
+        getArray.push(k);
+    })
+})
+function compare(property){
+    return function(a,b){
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
     }
-    return args;
 }
 /*
- * 使用方法
- * var args = urlArgs();
- * var q = args.q || &quot;&quot;;
- * var n = args.n ? parseInt(args.n) : 10;
+ * 将一个数组分成几个同等长度的数组
+ * array[分割的原数组]
+ * size[每个子数组的长度]
  */
-</code></pre>
+function sliceArray(array, size) {
+    var result = [];
+    for (var x = 0; x &lt; Math.ceil(array.length / size); x++) {
+        var start = x * size;
+        var end = start + size;
+        result.push(array.slice(start, end));
+    }
+    return result;
+}    
+console.log(getArray);
+&lt;/script&gt;    
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>输出结果：<br><img src="http://img.blog.csdn.net/20170328224651586?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4c3i0tk00052or01ogdxtzo" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" data-id="cj4c3i0tc00042or0avig4ava" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/url-搜索-函数/">url 搜索 函数</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          计时器——setTimeout、setInterval相关的精悍代码
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/06/23/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/06/25/代码实现添加联系人——Vcard/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">代码实现添加联系人——Vcard</div>
     </a>
   
 </nav>
