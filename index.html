@@ -72,6 +72,92 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-chrome控制台中console的强大" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/25/chrome控制台中console的强大/" class="article-date">
+  <time datetime="2017-06-25T09:27:49.000Z" itemprop="datePublished">2017-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/25/chrome控制台中console的强大/">chrome控制台中console的强大</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>在使用谷歌浏览器进行前端开发的时候，console作为控制台的一个主要方法，相信大家都用过，一般都是用console.log()来输出部分内容，但是console还有很多强大之处，下面主要说一下console的更重强大的地方：<br>首先在chrome控制台的console中输入console.就会出现如下：<br><img src="http://img.blog.csdn.net/20170322203120309?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>后面出现的都是console的方法，下面来主要说明一下这些方法：</p>
+<p>1、console.assert(message1, message2)<br>message1: Boolean类型，当为false的时候会输入message2<br>message2: 一般情况下是字符串，表示一些具体的信息<br>例如：</p>
+<pre><code>var flag = false;
+console.assert(flag, &quot;可以输出&quot;);
+var flag2 = true;
+console.assert(flag2, &quot;不会输出&quot;);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322203846254?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>2、 console.clear();<br>用于清空console控制台<br><img src="http://img.blog.csdn.net/20170322204042442?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>3、 console.count()<br>使用console.count()可以计算某段代码的执行次数。具体看下面这个例子</p>
+<pre><code>function array(){
+    console.count();
+}
+for(var i = 0; i&lt; 10; i++){
+    array();
+}
+</code></pre><p><img src="http://img.blog.csdn.net/20170322204452360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>4、 console.debug()<br>可用于代码调试，chrome已经将其做成界面化操作，这里就不多说了。<br>5、console.dir()和console.dirxml()<br>将DOM结点以Js对象的形式输出到控制台，例如：在任何一个网页中的console控制台执行下面代码</p>
+<pre><code>console.dir($(&quot;body&quot;));
+</code></pre><p><img src="http://img.blog.csdn.net/20170322205115526?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<pre><code>console.dirxml($(&quot;body&quot;));
+</code></pre><p><img src="http://img.blog.csdn.net/20170322205447327?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>6、 console.log()/console.info()/console.warn()/console.error()<br>打印内容/输出信息/输出警告/输出错误</p>
+<pre><code>console.log(&quot;打印内容&quot;);
+console.info(&quot;输出信息&quot;);
+console.warn(&quot;输出警告&quot;);
+console.error(&quot;输出错误&quot;);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322210023990?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>7、 console.log()<br>console.log()不光可以打印内容，它还可以添加很多配置来达到不同的目的：<br>|指示符|    输出|<br>| ————- |————-|<br>|%s    |格式化输出一个字符串变量。|<br>|%i or %d    |格式化输出一个整型变量的值。|<br>|%f    |格式化输出一个浮点数变量的值。|<br>|%o    |格式化输出一个DOM对象。|<br>|%O    |格式化输出一个Javascript对象。|<br>|%c    |为后面的字符串加上CSS样式|</p>
+<pre><code>console.log(&quot;%c内容&quot;, &quot;font-size:20px; color:red;&quot;);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322211042613?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>8、console.group()/console.groupCollapsed()/console.groupEnd()<br>console.group(): 输出一组内容的开始<br>console.groupCollapsed(): 输出组的标题<br>console.groupEnd(): 输出组的结束</p>
+<pre><code>console.group(&quot;组1&quot;);
+console.groupCollapsed(&quot;组1的标题&quot;);
+console.log(&quot;组1的内容&quot;);
+console.groupEnd();
+</code></pre><p><img src="http://img.blog.csdn.net/20170322212023962?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>9、 console.markTimeline()已经过时，请使用console.timeStamp()代替<br><img src="http://img.blog.csdn.net/20170322212341682?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>console.timeStamp()是实现一个时间戳。<br>10、 console.profile()/ console.profileEnd()<br>查看CPU的使用情况，可直接使用界面化的，<br><img src="http://img.blog.csdn.net/20170322213116701?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>11、 console.table()<br>将数据内容以表格的形式进行展示</p>
+<pre><code>var data = [{&quot;name&quot;: &quot;Bob&quot;,&quot;age&quot;: 8},{&quot;name&quot;: &quot;Roce&quot;,&quot;age&quot;: 15},{&quot;name&quot;: &quot;Blu&quot;,&quot;age&quot;: 10}];
+console.table(data);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322213456080?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>12、 console.time() / console.timeEnd()<br>可用于审查一段代码的耗时情况</p>
+<pre><code>console.time(&quot;Array initialize&quot;);
+var array= new Array(1000000);
+for (var i = array.length - 1; i &gt;= 0; i--) {
+    array[i] = new Object();
+};
+console.timeEnd(&quot;Array initialize&quot;);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322213700799?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>13、 console.trace() 可以打出js的函数调用栈，可以用界面化的操作<br>14、console.constructor(message)</p>
+<pre><code>console.constructor(&quot;number&quot;);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322214755411?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<pre><code>console.constructor([1,2,3])
+</code></pre><p><img src="http://img.blog.csdn.net/20170322214835444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/25/chrome控制台中console的强大/" data-id="cj4ciovh60001pwr0dc41qq3f" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器-chrome-控制台-前端开发/">浏览器 chrome 控制台 前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-使用slice-简单封装实现将数组分割为几个等长度的子数组" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/" class="article-date">
@@ -140,7 +226,7 @@ arr.concat(arr1, arr2); //输出[1, 2, 3, 4, 5, 6]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/" data-id="cj4c3tf100008ecr0y2z429eq" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/" data-id="cj4ciovi10006pwr03hosp9tf" class="article-share-link">分享</a>
       
       
       
@@ -233,7 +319,7 @@ console.log(getArray);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" data-id="cj4c3tf130009ecr0ffxakph8" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" data-id="cj4ciovje000npwr05e1575k6" class="article-share-link">分享</a>
       
       
       
@@ -300,7 +386,7 @@ END:VCARD
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4c3tf0s0005ecr08b6rgyec" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4ciovka000qpwr0y9v3ys6o" class="article-share-link">分享</a>
       
       
       
@@ -416,7 +502,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4c3tezp0000ecr0s39racdh" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4ciovia0009pwr0zagbxoz0" class="article-share-link">分享</a>
       
       
       
@@ -585,7 +671,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj4c3tezy0001ecr0te7a9m1w" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj4ciovih000apwr0j6bcw0t7" class="article-share-link">分享</a>
       
       
       
@@ -893,7 +979,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/input-type所有功能/" data-id="cj4c3tf0k0004ecr05eddnqn9" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/input-type所有功能/" data-id="cj4ciovhz0005pwr0ya4jc6yu" class="article-share-link">分享</a>
       
       
       
@@ -972,7 +1058,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj4c3tf1d000decr016zb39tr" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" data-id="cj4ciovhb0002pwr0wo9hzxeo" class="article-share-link">分享</a>
       
       
       
@@ -1036,7 +1122,7 @@ function urlArgs(){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4c3tf1a000aecr0wzi6xfud" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4ciovhx0004pwr01mnyp0kz" class="article-share-link">分享</a>
       
       
       
@@ -1087,7 +1173,7 @@ function urlArgs(){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/hello-world/" data-id="cj4c3tf0h0003ecr0gbwkzw18" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/23/hello-world/" data-id="cj4ciovgx0000pwr0j9hfg8nb" class="article-share-link">分享</a>
       
       
       
@@ -1099,100 +1185,11 @@ function urlArgs(){
 
 
   
-    <article id="post-阶乘——arguments-Array-reduce-与Array-reduceRight-的实践" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" class="article-date">
-  <time datetime="2017-06-22T04:23:37.000Z" itemprop="datePublished">2017-06-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/">阶乘——arguments/Array.reduce()与Array.reduceRight()的实践</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <h1 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h1><p>阶乘指从1乘以2乘以3乘以4一直乘到所要求的数。</p>
-<pre><code>0! = 1;
-1! = 1;
-2! = 1 * 2 ;
-3! = 1 * 2 * 3;
-n! = 1 * 2 * 3 * …… * n ;
-</code></pre><h1 id="js实现"><a href="#js实现" class="headerlink" title="js实现"></a>js实现</h1><p>我们在代码里面肯定是不可能这样实现的，因为n的不确定性，所以我们要写一个函数来实现。</p>
-<pre><code>var factorial = function(n){
-    if(n &lt; 2) return 1;
-    else return n * arguments.callee(n - 1);
-}
-var a = factorial(0); //1
-var b = factorial(1); //1
-var c = factorial(2); //2
-var d = factorial(3); //6
-</code></pre><p>满足要求，我们在实现的时候实际上主要用到的arguments.callee，<br>arguments.callee指代当前正在执行的函数，通过它可以引用匿名函数自身。该属性值定义在函数体中。</p>
-<p>前两天看的Array.reduce()感觉也可以实现，Array.reduce()从数组元素中计算一个值，共两个参数，第一个参数是一个函数，可以合并两个值（比如两个数组元素），并返回一个缩减的新值，第二个参数是一个数值，用来缩减数组的可选初始值。</p>
-<pre><code>[1,2,3,4].reduce(function(x,y){ return x*y; }, 1); //24
-</code></pre><p>有点像阶乘，那就可以实现了。</p>
-<pre><code>var factorial = function(n){
-    if(n &lt; 2) return 1;
-    else{
-        var array = [];
-        for(var i = 2; i &lt;= n; i++){
-            array.push(i);
-        }
-        return array.reduce(function(x,y){ return x*y; }, 1);
-    };
-}
-var a = factorial(0); //1
-var b = factorial(1); //1
-var c = factorial(2); //2
-var d = factorial(3); //6
-var e = factorial(4); //24
-</code></pre><p>既然Array.reduce()可以实现，那么Array.reduceRight()也是可以实现的，Array.reduceRight()与Array.reduce()的不同之处是Array.reduce()是从左到右缩减数组，而Array.reduceRight()是从右到左缩减数组，参数都一样。</p>
-<pre><code>var factorial = function(n){
-    if(n &lt; 2) return 1;
-    else{
-        var array = [];
-        for(var i = 2; i &lt;= n; i++){
-            array.push(i);
-        }
-        return array.reduceRight(function(x,y){ return x*y; }, 1);
-    };
-}
-var a = factorial(0); //1
-var b = factorial(1); //1
-var c = factorial(2); //2
-var d = factorial(3); //6
-var e = factorial(4); //24
-</code></pre><p>虽然后面两种方式也可以实现，但明显复杂了许多，推荐使用第一种。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" data-id="cj4c3tf1f000eecr0moxb911v" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数-阶乘-Array-arguments/">函数 阶乘 Array arguments</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
 
 
-  
-
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
+  </nav>
 </section>
            
     <aside id="sidebar">
@@ -1229,7 +1226,7 @@ var e = factorial(4); //24
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/javaScript-slice-concat-数组分割-数组合并/" style="font-size: 14px;">javaScript slice concat 数组分割 数组合并</a> <a href="/tags/radius-css3-圆角/" style="font-size: 14px;">radius css3 圆角</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/二维码-通讯录-浏览器-手机-微信/" style="font-size: 14px;">二维码 通讯录 浏览器 手机 微信</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a> <a href="/tags/浏览器-对象-排序-javaScript/" style="font-size: 14px;">浏览器 对象 排序 javaScript</a>
+      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/javaScript-slice-concat-数组分割-数组合并/" style="font-size: 14px;">javaScript slice concat 数组分割 数组合并</a> <a href="/tags/radius-css3-圆角/" style="font-size: 14px;">radius css3 圆角</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/二维码-通讯录-浏览器-手机-微信/" style="font-size: 14px;">二维码 通讯录 浏览器 手机 微信</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a> <a href="/tags/浏览器-chrome-控制台-前端开发/" style="font-size: 14px;">浏览器 chrome 控制台 前端开发</a> <a href="/tags/浏览器-对象-排序-javaScript/" style="font-size: 14px;">浏览器 对象 排序 javaScript</a>
     </div>
   </div>
 
@@ -1239,6 +1236,10 @@ var e = factorial(4); //24
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/25/chrome控制台中console的强大/">chrome控制台中console的强大</a>
+          </li>
         
           <li>
             <a href="/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/">使用slice()简单封装实现将数组分割为几个等长度的子数组</a>
@@ -1256,10 +1257,6 @@ var e = factorial(4); //24
             <a href="/2017/06/24/border-radius的趣味妙谈/">border-radius的趣味妙谈</a>
           </li>
         
-          <li>
-            <a href="/2017/06/23/cursor的所有样式/">cursor的所有样式</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1269,7 +1266,7 @@ var e = factorial(4); //24
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">11</span></li></ul>
     </div>
   </div>
 

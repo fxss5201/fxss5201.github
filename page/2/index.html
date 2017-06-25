@@ -3,19 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>获取location对象中search属性中的参数 | 樊小书生——博客</title>
+  <title>樊小书生——博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生： // 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象 function urlArgs(){     var args = {};">
-<meta name="keywords" content="url 搜索 函数">
-<meta property="og:type" content="article">
-<meta property="og:title" content="获取location对象中search属性中的参数">
-<meta property="og:url" content="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/index.html">
+  <meta name="description" content="欢迎来到樊小书生的博客，希望你在此可以学到有用的东西">
+<meta property="og:type" content="website">
+<meta property="og:title" content="樊小书生——博客">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="樊小书生——博客">
-<meta property="og:description" content="location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生： // 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象 function urlArgs(){     var args = {};">
-<meta property="og:updated_time" content="2017-06-23T14:15:06.312Z">
+<meta property="og:description" content="欢迎来到樊小书生的博客，希望你在此可以学到有用的东西">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="获取location对象中search属性中的参数">
-<meta name="twitter:description" content="location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生： // 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象 function urlArgs(){     var args = {};">
+<meta name="twitter:title" content="樊小书生——博客">
+<meta name="twitter:description" content="欢迎来到樊小书生的博客，希望你在此可以学到有用的东西">
   
     <link rel="alternate" href="/atom.xml" title="樊小书生——博客" type="application/atom+xml">
   
@@ -72,10 +70,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-获取location对象中search属性中的参数" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-阶乘——arguments-Array-reduce-与Array-reduceRight-的实践" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/06/23/获取location对象中search属性中的参数/" class="article-date">
-  <time datetime="2017-06-23T14:11:25.000Z" itemprop="datePublished">2017-06-23</time>
+    <a href="/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" class="article-date">
+  <time datetime="2017-06-22T04:23:37.000Z" itemprop="datePublished">2017-06-22</time>
 </a>
     
   </div>
@@ -85,8 +85,8 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      获取location对象中search属性中的参数
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/">阶乘——arguments/Array.reduce()与Array.reduceRight()的实践</a>
     </h1>
   
 
@@ -96,78 +96,80 @@
       
         <!-- Table of Contents -->
         
-        <p>location对象中search属性返回的是问号之后的URL，这部分通常是某种类型的查询字符串，是用来参数化URL并在其中嵌入参数的，那么如何在页面中用js来获取到所有的参数呢？下面的函数就是为此而生：</p>
-<pre><code>// 函数用来解析来自URL的产讯传中的name = value参数对，并将其存储在一个对象的属性中，并且返回该对象
-function urlArgs(){
-    var args = {};
-    var query = location.search.substring(1);
-    var pairs = query.split(&quot;&amp;&quot;);
-    for(var i = 0;i &lt; pairs.length; i++){
-        var pos = pairs[i].indexOf(&quot;=&quot;);
-        if(pos == -1) continue;
-        var name = pairs[i].substring(0, pos);
-        var value = pairs[i].substring(pos + 1);
-        value = decodeURIComponent(value);
-        args[name] = value;
-    }
-    return args;
+        <h1 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h1><p>阶乘指从1乘以2乘以3乘以4一直乘到所要求的数。</p>
+<pre><code>0! = 1;
+1! = 1;
+2! = 1 * 2 ;
+3! = 1 * 2 * 3;
+n! = 1 * 2 * 3 * …… * n ;
+</code></pre><h1 id="js实现"><a href="#js实现" class="headerlink" title="js实现"></a>js实现</h1><p>我们在代码里面肯定是不可能这样实现的，因为n的不确定性，所以我们要写一个函数来实现。</p>
+<pre><code>var factorial = function(n){
+    if(n &lt; 2) return 1;
+    else return n * arguments.callee(n - 1);
 }
-/*
- * 使用方法
- * var args = urlArgs();
- * var q = args.q || &quot;&quot;;
- * var n = args.n ? parseInt(args.n) : 10;
- */
-</code></pre>
+var a = factorial(0); //1
+var b = factorial(1); //1
+var c = factorial(2); //2
+var d = factorial(3); //6
+</code></pre><p>满足要求，我们在实现的时候实际上主要用到的arguments.callee，<br>arguments.callee指代当前正在执行的函数，通过它可以引用匿名函数自身。该属性值定义在函数体中。</p>
+<p>前两天看的Array.reduce()感觉也可以实现，Array.reduce()从数组元素中计算一个值，共两个参数，第一个参数是一个函数，可以合并两个值（比如两个数组元素），并返回一个缩减的新值，第二个参数是一个数值，用来缩减数组的可选初始值。</p>
+<pre><code>[1,2,3,4].reduce(function(x,y){ return x*y; }, 1); //24
+</code></pre><p>有点像阶乘，那就可以实现了。</p>
+<pre><code>var factorial = function(n){
+    if(n &lt; 2) return 1;
+    else{
+        var array = [];
+        for(var i = 2; i &lt;= n; i++){
+            array.push(i);
+        }
+        return array.reduce(function(x,y){ return x*y; }, 1);
+    };
+}
+var a = factorial(0); //1
+var b = factorial(1); //1
+var c = factorial(2); //2
+var d = factorial(3); //6
+var e = factorial(4); //24
+</code></pre><p>既然Array.reduce()可以实现，那么Array.reduceRight()也是可以实现的，Array.reduceRight()与Array.reduce()的不同之处是Array.reduce()是从左到右缩减数组，而Array.reduceRight()是从右到左缩减数组，参数都一样。</p>
+<pre><code>var factorial = function(n){
+    if(n &lt; 2) return 1;
+    else{
+        var array = [];
+        for(var i = 2; i &lt;= n; i++){
+            array.push(i);
+        }
+        return array.reduceRight(function(x,y){ return x*y; }, 1);
+    };
+}
+var a = factorial(0); //1
+var b = factorial(1); //1
+var c = factorial(2); //2
+var d = factorial(3); //6
+var e = factorial(4); //24
+</code></pre><p>虽然后面两种方式也可以实现，但明显复杂了许多，推荐使用第一种。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/获取location对象中search属性中的参数/" data-id="cj4ciovhx0004pwr01mnyp0kz" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/22/阶乘——arguments-Array-reduce-与Array-reduceRight-的实践/" data-id="cj4ciovik000cpwr0xb4w7s56" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/url-搜索-函数/">url 搜索 函数</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数-阶乘-Array-arguments/">函数 阶乘 Array arguments</a></li></ul>
 
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2017/06/23/计时器——setTimeout、setInterval相关的精悍代码/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          计时器——setTimeout、setInterval相关的精悍代码
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/06/23/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
-
-  
 </article>
  
-     
-  <div class="comments" id="comments">
-    
-     
-       
-       
-      
-      
-           <div id="gitment_comments"></div>
-    
-  </div>
- 
+
+
   
 
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 </section>
            
     <aside id="sidebar">

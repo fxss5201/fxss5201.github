@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>chrome控制台中console的强大 | 樊小书生——博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在使用谷歌浏览器进行前端开发的时候，console作为控制台的一个主要方法，相信大家都用过，一般都是用console.log()来输出部分内容，但是console还有很多强大之处，下面主要说一下console的更重强大的地方：首先在chrome控制台的console中输入console.就会出现如下：后面出现的都是console的方法，下面来主要说明一下这些方法： 1、console.assert">
+<meta name="keywords" content="浏览器 chrome 控制台 前端开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chrome控制台中console的强大">
+<meta property="og:url" content="http://yoursite.com/2017/06/25/chrome控制台中console的强大/index.html">
+<meta property="og:site_name" content="樊小书生——博客">
+<meta property="og:description" content="在使用谷歌浏览器进行前端开发的时候，console作为控制台的一个主要方法，相信大家都用过，一般都是用console.log()来输出部分内容，但是console还有很多强大之处，下面主要说一下console的更重强大的地方：首先在chrome控制台的console中输入console.就会出现如下：后面出现的都是console的方法，下面来主要说明一下这些方法： 1、console.assert">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322203120309?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322203846254?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322204042442?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322204452360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322205115526?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322205447327?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322210023990?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322211042613?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322212023962?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322212341682?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322213116701?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322213456080?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322213700799?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322214755411?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170322214835444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-06-25T09:33:37.390Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="chrome控制台中console的强大">
+<meta name="twitter:description" content="在使用谷歌浏览器进行前端开发的时候，console作为控制台的一个主要方法，相信大家都用过，一般都是用console.log()来输出部分内容，但是console还有很多强大之处，下面主要说一下console的更重强大的地方：首先在chrome控制台的console中输入console.就会出现如下：后面出现的都是console的方法，下面来主要说明一下这些方法： 1、console.assert">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170322203120309?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="樊小书生——博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">樊小书生——博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">多看代码，多看书，付出总会有收获的。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-chrome控制台中console的强大" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/25/chrome控制台中console的强大/" class="article-date">
+  <time datetime="2017-06-25T09:27:49.000Z" itemprop="datePublished">2017-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      chrome控制台中console的强大
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>在使用谷歌浏览器进行前端开发的时候，console作为控制台的一个主要方法，相信大家都用过，一般都是用console.log()来输出部分内容，但是console还有很多强大之处，下面主要说一下console的更重强大的地方：<br>首先在chrome控制台的console中输入console.就会出现如下：<br><img src="http://img.blog.csdn.net/20170322203120309?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>后面出现的都是console的方法，下面来主要说明一下这些方法：</p>
+<p>1、console.assert(message1, message2)<br>message1: Boolean类型，当为false的时候会输入message2<br>message2: 一般情况下是字符串，表示一些具体的信息<br>例如：</p>
+<pre><code>var flag = false;
+console.assert(flag, &quot;可以输出&quot;);
+var flag2 = true;
+console.assert(flag2, &quot;不会输出&quot;);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322203846254?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>2、 console.clear();<br>用于清空console控制台<br><img src="http://img.blog.csdn.net/20170322204042442?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>3、 console.count()<br>使用console.count()可以计算某段代码的执行次数。具体看下面这个例子</p>
+<pre><code>function array(){
+    console.count();
+}
+for(var i = 0; i&lt; 10; i++){
+    array();
+}
+</code></pre><p><img src="http://img.blog.csdn.net/20170322204452360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>4、 console.debug()<br>可用于代码调试，chrome已经将其做成界面化操作，这里就不多说了。<br>5、console.dir()和console.dirxml()<br>将DOM结点以Js对象的形式输出到控制台，例如：在任何一个网页中的console控制台执行下面代码</p>
+<pre><code>console.dir($(&quot;body&quot;));
+</code></pre><p><img src="http://img.blog.csdn.net/20170322205115526?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<pre><code>console.dirxml($(&quot;body&quot;));
+</code></pre><p><img src="http://img.blog.csdn.net/20170322205447327?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>6、 console.log()/console.info()/console.warn()/console.error()<br>打印内容/输出信息/输出警告/输出错误</p>
+<pre><code>console.log(&quot;打印内容&quot;);
+console.info(&quot;输出信息&quot;);
+console.warn(&quot;输出警告&quot;);
+console.error(&quot;输出错误&quot;);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322210023990?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>7、 console.log()<br>console.log()不光可以打印内容，它还可以添加很多配置来达到不同的目的：<br>|指示符|    输出|<br>| ————- |————-|<br>|%s    |格式化输出一个字符串变量。|<br>|%i or %d    |格式化输出一个整型变量的值。|<br>|%f    |格式化输出一个浮点数变量的值。|<br>|%o    |格式化输出一个DOM对象。|<br>|%O    |格式化输出一个Javascript对象。|<br>|%c    |为后面的字符串加上CSS样式|</p>
+<pre><code>console.log(&quot;%c内容&quot;, &quot;font-size:20px; color:red;&quot;);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322211042613?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>8、console.group()/console.groupCollapsed()/console.groupEnd()<br>console.group(): 输出一组内容的开始<br>console.groupCollapsed(): 输出组的标题<br>console.groupEnd(): 输出组的结束</p>
+<pre><code>console.group(&quot;组1&quot;);
+console.groupCollapsed(&quot;组1的标题&quot;);
+console.log(&quot;组1的内容&quot;);
+console.groupEnd();
+</code></pre><p><img src="http://img.blog.csdn.net/20170322212023962?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>9、 console.markTimeline()已经过时，请使用console.timeStamp()代替<br><img src="http://img.blog.csdn.net/20170322212341682?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>console.timeStamp()是实现一个时间戳。<br>10、 console.profile()/ console.profileEnd()<br>查看CPU的使用情况，可直接使用界面化的，<br><img src="http://img.blog.csdn.net/20170322213116701?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>11、 console.table()<br>将数据内容以表格的形式进行展示</p>
+<pre><code>var data = [{&quot;name&quot;: &quot;Bob&quot;,&quot;age&quot;: 8},{&quot;name&quot;: &quot;Roce&quot;,&quot;age&quot;: 15},{&quot;name&quot;: &quot;Blu&quot;,&quot;age&quot;: 10}];
+console.table(data);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322213456080?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>12、 console.time() / console.timeEnd()<br>可用于审查一段代码的耗时情况</p>
+<pre><code>console.time(&quot;Array initialize&quot;);
+var array= new Array(1000000);
+for (var i = array.length - 1; i &gt;= 0; i--) {
+    array[i] = new Object();
+};
+console.timeEnd(&quot;Array initialize&quot;);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322213700799?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>13、 console.trace() 可以打出js的函数调用栈，可以用界面化的操作<br>14、console.constructor(message)</p>
+<pre><code>console.constructor(&quot;number&quot;);
+</code></pre><p><img src="http://img.blog.csdn.net/20170322214755411?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<pre><code>console.constructor([1,2,3])
+</code></pre><p><img src="http://img.blog.csdn.net/20170322214835444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/25/chrome控制台中console的强大/" data-id="cj4ciovh60001pwr0dc41qq3f" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器-chrome-控制台-前端开发/">浏览器 chrome 控制台 前端开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">使用slice()简单封装实现将数组分割为几个等长度的子数组</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+           <div id="gitment_comments"></div>
+    
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title recent-posts">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/chrome控制台中console的强大/">chrome控制台中console的强大</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/">使用slice()简单封装实现将数组分割为几个等长度的子数组</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/">将数组中的对象按照浏览器的x/y轴的显示方式进行排序</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/代码实现添加联系人——Vcard/">代码实现添加联系人——Vcard</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/border-radius的趣味妙谈/">border-radius的趣味妙谈</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2017 樊玉顺&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;723107234@qq.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script> 
+  <script>
+  var gitment = new Gitment({
+    // id: '页面 ID', // 可选。默认为 location.href
+    owner: 'giscafer',
+    repo: 'giscafer.github.io',
+    oauth: {
+    client_id: '7e5dd6cdb9xxaxa4cf91a',
+    client_secret: '97f37d5c27c4a511xx4fxx623d391c85cb97f8',
+    }
+  })
+  gitment.render(document.getElementById("gitment_comments"))
+</script>
+
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
