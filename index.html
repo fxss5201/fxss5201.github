@@ -72,6 +72,136 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-水平垂直居中——position与margin的结合使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/26/水平垂直居中——position与margin的结合使用/" class="article-date">
+  <time datetime="2017-06-26T15:37:38.000Z" itemprop="datePublished">2017-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/26/水平垂直居中——position与margin的结合使用/">水平垂直居中——position与margin的结合使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>水平垂直居中在页面的布局中还是会经常用到的，比如讲一个图片水平居中显示？</p>
+<p>我们都知道水平居中的时候我们可以使用margin: 0 auto;，但是在垂直方向上使用margin: auto 0;确是无效的。这是为什么呢？</p>
+<p>说到这里就设计到宽度计算和高度计算了：</p>
+<h2 id="宽度计算"><a href="#宽度计算" class="headerlink" title="宽度计算"></a>宽度计算</h2><p>默认的宽度规则是“适应于父级”规则。（是默认，那当然就是所有啦）<br>W3 CSS 2.1 第十章里为常规流替换和非替换块级元素定义了这个算式：</p>
+<pre><code>margin-left + border-left-width + padding-left + width + padding-right + border-right-width + margin-right = width of containing block
+</code></pre><p>这里需要一张盒子模型<img src="http://img.blog.csdn.net/20170626224040413?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="">，借助于盒模型的图片我们可以很清楚的理解宽度的计算方法。</p>
+<p>同时为几项auto设置了额外的算法：</p>
+<ol>
+<li>If there is exactly one value specified as ‘auto’, its used value follows from the equality. </li>
+<li>If ‘width’ is set to ‘auto’, any other ‘auto’ values become ‘0’ and ‘width’ follows from the resulting equality. </li>
+<li>If both ‘margin-left’ and ‘margin-right’ are ‘auto’, their used values are equal. This horizontally centers the element with respect to the edges of the containing block.</li>
+</ol>
+<p>大致意思就是</p>
+<ol>
+<li>如果有一个值指定为“自动”，则它的使用值是从等式中提取的。</li>
+<li>如果“宽度”设置为“自动”，则任何其他“自动”值都将从结果相等中变为“0”和“宽度”。</li>
+<li>如果“左边的”和“右边的”是“自动的”，它们的使用值相等。这个水平将元素集中在包含块的边上。这就是auto可以水平居中的原因。</li>
+</ol>
+<p>对于绝对定位元素，计算公式如下：</p>
+<pre><code>left + margin-left + border-left-width + padding-left + width + padding-right + border-right-width + margin-right + right = width of containing block
+</code></pre><p>加入了left和right两个值，依然可以使用margin: 0 auto;来实现水平居中。代码如下：</p>
+<pre><code>position: absolute;
+left: 0;
+right: 0;
+margin: 0 auto;
+width: 200px; //如果未设置宽度，则宽度默认为父元素的宽度
+</code></pre><h2 id="高度计算"><a href="#高度计算" class="headerlink" title="高度计算"></a>高度计算</h2><p>This section also applies to block-level non-replaced elements in normal flow when ‘overflow’ does not compute to ‘visible’ but has been propagated to the viewport.</p>
+<p>If ‘margin-top’, or ‘margin-bottom’ are ‘auto’, their used value is 0. If ‘height’ is ‘auto’, the height depends on whether the element has any block-level children and whether it has padding or borders:</p>
+<p>The element’s height is the distance from its top content edge to the first applicable of the following:</p>
+<ol>
+<li>the bottom edge of the last line box, if the box establishes a inline formatting context with one or more lines</li>
+<li>the bottom edge of the bottom (possibly collapsed) margin of its last in-flow child, if the child’s bottom margin does not collapse with the element’s bottom margin</li>
+<li>the bottom border edge of the last in-flow child whose top margin doesn’t collapse with the element’s bottom margin</li>
+<li>zero, otherwise</li>
+</ol>
+<p>大致意思就是：<br>本节也适用于在“溢出”未计算为“可见”但已传播到视空间的正常流中的块级未替换元素。<br>如果“边距顶部”或“边距底部”是“自动”，它们的使用值是0。如果“高度”是“自动”，则高度取决于元素是否有任何块级别的子元素，以及是否有填充或边框：</p>
+<p>元素的高度是从它的顶部内容边缘到第一个适用的距离：</p>
+<ol>
+<li>如果框具有一行或多行的内联格式化上下文，则最后一行框的底部边缘</li>
+<li>如果子底边距不在元素的底部边缘折叠，那么最后一个子元素的底部（可能是折叠的）边缘的底部边缘。</li>
+<li>最后一个子元素的底部边界边缘，其顶部边距不会因元素的底部边距而折叠。</li>
+<li>否则为0</li>
+</ol>
+<p>对于绝对定位元素，计算公式如下：</p>
+<pre><code>top + margin-top + border-top-width + padding-top + height + padding-bottom + border-bottom-width + margin-bottom + bottom = height of containing block
+</code></pre><p>因此margin-top: auto; margin-bottom: auto;top: 0;bottom: 0;，可以让绝对定位元素垂直居中，代码如下：</p>
+<pre><code>position: absolute;
+top: 0;
+bottom: 0;
+margin-top: auto;
+margin-bottom: auto;
+height: 200px; //如果未设置高度，则宽度默认为父元素的高度
+</code></pre><p>既然使用绝对定位可以实现水平居中和垂直居中，那自然而然就可以实现水平垂直居中，代码如下：</p>
+<pre><code>position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+margin: auto;
+width: 200px; //如果未设置宽度，则宽度默认为父元素的宽度
+height: 200px; //如果未设置高度，则宽度默认为父元素的高度；如果宽度和高度都未设置，则充满整个父元素。
+</code></pre><p>另外使用该方法也可以实现当子元素的高度的大于父元素，并且仅希望显示父元素垂直方向中间一块的内容（图片多适用）。</p>
+<p>下面展示一个例子，如图，我们金希望显示中间的汽车：<br><img src="http://img.blog.csdn.net/20170626232252879?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>html结构：</p>
+<pre><code>&lt;div class=&quot;container&quot;&gt;
+    &lt;img src=&quot;timg.jpg&quot;&gt;
+&lt;/div&gt;
+</code></pre><p>css布局：</p>
+<pre><code>* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    position: relative;
+    width: 500px;
+    height: 135px;
+    overflow: hidden;
+}
+img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+}
+</code></pre><p>显示结果如图所示：<br><img src="http://img.blog.csdn.net/20170626233421872?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZnhzczUyMDE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/26/水平垂直居中——position与margin的结合使用/" data-id="cj4ebbn1y000hycr0hk8ek8ud" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/水平垂直居中-布局-css/">水平垂直居中 布局 css</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-从一段字符串中快速找出某个字母或字符串出现的次数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/25/从一段字符串中快速找出某个字母或字符串出现的次数/" class="article-date">
@@ -117,7 +247,7 @@ console.log(number);//输出2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/从一段字符串中快速找出某个字母或字符串出现的次数/" data-id="cj4e702ah000bkgr0x2rwves4" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/从一段字符串中快速找出某个字母或字符串出现的次数/" data-id="cj4ebbn1l0009ycr0cdf1wcri" class="article-share-link">分享</a>
       
       
       
@@ -250,7 +380,7 @@ var autoTextarea = function (elem, extra, maxHeight) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/更强大的textarea高度自适应/" data-id="cj4e702ar000jkgr00oair83z" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/更强大的textarea高度自适应/" data-id="cj4ebbn2e000qycr0j8gw6wy9" class="article-share-link">分享</a>
       
       
       
@@ -314,7 +444,7 @@ $.each($(&quot;textarea&quot;), function(i, n){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/textarea的高度自适应/" data-id="cj4e702a80008kgr0ptg4qkjc" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/textarea的高度自适应/" data-id="cj4ebbn29000mycr0sqj5h7he" class="article-share-link">分享</a>
       
       
       
@@ -386,7 +516,7 @@ console.log(newArray);//输出结果[1, 3, 6, 10]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/一个循环实现新数组n位值是老数组前n位的和/" data-id="cj4e702ab0009kgr0q4jrujnv" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/一个循环实现新数组n位值是老数组前n位的和/" data-id="cj4ebbn1e0008ycr01p01lluk" class="article-share-link">分享</a>
       
       
       
@@ -472,7 +602,7 @@ console.timeEnd(&quot;Array initialize&quot;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/chrome控制台中console的强大/" data-id="cj4e7029c0001kgr0cf738ok2" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/chrome控制台中console的强大/" data-id="cj4ebbn110003ycr0sc16asqm" class="article-share-link">分享</a>
       
       
       
@@ -554,7 +684,7 @@ arr.concat(arr1, arr2); //输出[1, 2, 3, 4, 5, 6]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/" data-id="cj4e702am000fkgr07nn0xyxd" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/使用slice-简单封装实现将数组分割为几个等长度的子数组/" data-id="cj4ebbn1s000dycr014pd10il" class="article-share-link">分享</a>
       
       
       
@@ -647,7 +777,7 @@ console.log(getArray);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" data-id="cj4e702ao000hkgr0882w6b8k" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/将数组中的对象按照浏览器的x-y轴的显示方式进行排序/" data-id="cj4ebbn1u000fycr0vemotlza" class="article-share-link">分享</a>
       
       
       
@@ -714,7 +844,7 @@ END:VCARD
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4e702ai000dkgr008u34as9" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/25/代码实现添加联系人——Vcard/" data-id="cj4ebbn1p000bycr034rb56rk" class="article-share-link">分享</a>
       
       
       
@@ -830,179 +960,12 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4e702950000kgr026lok83o" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/24/border-radius的趣味妙谈/" data-id="cj4ebbn0e0000ycr080fh3dav" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/radius-css3-圆角/">radius css3 圆角</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-cursor的所有样式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/23/cursor的所有样式/" class="article-date">
-  <time datetime="2017-06-23T14:46:40.000Z" itemprop="datePublished">2017-06-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/23/cursor的所有样式/">cursor的所有样式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>cursor可以为按钮或者某些区域强制定义一种鼠标移上去的鼠标光标形状。</p>
-<h2 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>cursor 属性规定要显示的光标的类型（形状）。<br>该属性定义了鼠标指针放在一个元素边界范围内时所用的光标形状（不过 CSS2.1 没有定义由哪个边界确定这个范围）。</p>
-<p>下面直接写一个例子，使用浏览器打开，鼠标移上去就可以直接看到效果：</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;cursor&lt;/title&gt;
-    &lt;style&gt;
-        table,th,td {border: 1px solid #ccc;}
-        thead tr {background-color: #eee;}
-        tbody tr:nth-of-type(even) {background-color: #f8f8f8;}    
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;table cellpadding=&quot;6&quot; cellspacing=&quot;0&quot;&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;值&lt;/th&gt;
-            &lt;th&gt;描述&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr style=&quot;cursor: url;&quot;&gt;
-            &lt;td&gt;url&lt;/td&gt;
-            &lt;td&gt;需使用的自定义光标的 URL。注释：请在此列表的末端始终定义一种普通的光标，以防没有由 URL 定义的可用光标。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: default;&quot;&gt;
-            &lt;td&gt;default&lt;/td&gt;
-            &lt;td&gt;默认光标（通常是一个箭头）&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: auto;&quot;&gt;
-            &lt;td&gt;auto&lt;/td&gt;
-            &lt;td&gt;默认。浏览器设置的光标。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: crosshair;&quot;&gt;
-            &lt;td&gt;crosshair&lt;/td&gt;
-            &lt;td&gt;光标呈现为十字线。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: pointer;&quot;&gt;
-            &lt;td&gt;pointer&lt;/td&gt;
-            &lt;td&gt;光标呈现为指示链接的指针（一只手）&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: move;&quot;&gt;
-            &lt;td&gt;move&lt;/td&gt;
-            &lt;td&gt;此光标指示某对象可被移动。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: e-resize;&quot;&gt;
-            &lt;td&gt;e-resize&lt;/td&gt;
-            &lt;td&gt;此光标指示矩形框的边缘可被向右（东）移动。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: ne-resize;&quot;&gt;
-            &lt;td&gt;ne-resize&lt;/td&gt;
-            &lt;td&gt;此光标指示矩形框的边缘可被向上及向右移动（北/东）。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: nw-resize;&quot;&gt;
-            &lt;td&gt;nw-resize&lt;/td&gt;
-            &lt;td&gt;此光标指示矩形框的边缘可被向上及向左移动（北/西）。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: n-resize;&quot;&gt;
-            &lt;td&gt;n-resize&lt;/td&gt;
-            &lt;td&gt;此光标指示矩形框的边缘可被向上（北）移动。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: se-resize;&quot;&gt;
-            &lt;td&gt;se-resize&lt;/td&gt;
-            &lt;td&gt;此光标指示矩形框的边缘可被向下及向右移动（南/东）。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: sw-resize;&quot;&gt;
-            &lt;td&gt;sw-resize&lt;/td&gt;
-            &lt;td&gt;此光标指示矩形框的边缘可被向下及向左移动（南/西）。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: s-resize;&quot;&gt;
-            &lt;td&gt;s-resize&lt;/td&gt;
-            &lt;td&gt;此光标指示矩形框的边缘可被向下移动（南）。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: w-resize;&quot;&gt;
-            &lt;td&gt;w-resize&lt;/td&gt;
-            &lt;td&gt;此光标指示矩形框的边缘可被向左移动（西）。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: text;&quot;&gt;
-            &lt;td&gt;text&lt;/td&gt;
-            &lt;td&gt;此光标指示文本。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: vertical-text;&quot;&gt;
-            &lt;td&gt;vertical-text&lt;/td&gt;
-            &lt;td&gt;用于标示可编辑的垂直文本的光标。通常是大写字母 I 旋转90度的形状。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: wait;&quot;&gt;
-            &lt;td&gt;wait&lt;/td&gt;
-            &lt;td&gt;此光标指示程序正忙（通常是一只表或沙漏）。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: progress;&quot;&gt;
-            &lt;td&gt;progress&lt;/td&gt;
-            &lt;td&gt;带有沙漏标记的箭头光标。用于标示一个进程正在后台运行。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: help;&quot;&gt;
-            &lt;td&gt;help&lt;/td&gt;
-            &lt;td&gt;此光标指示可用的帮助（通常是一个问号或一个气球）。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: all-scroll;&quot;&gt;
-            &lt;td&gt;all-scroll&lt;/td&gt;
-            &lt;td&gt;有上下左右四个箭头，中间有一个圆点的光标。用于标示页面可以向上下左右任何方向滚动。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: col-resize;&quot;&gt;
-            &lt;td&gt;col-resize&lt;/td&gt;
-            &lt;td&gt;有左右两个箭头，中间由竖线分隔开的光标。用于标示项目或标题栏可以被水平改变尺寸。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: row-resize;&quot;&gt;
-            &lt;td&gt;row-resize&lt;/td&gt;
-            &lt;td&gt;有上下两个箭头，中间由横线分隔开的光标。用于标示项目或标题栏可以被垂直改变尺寸。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: no-drop;&quot;&gt;
-            &lt;td&gt;no-drop&lt;/td&gt;
-            &lt;td&gt;带有一个被斜线贯穿的圆圈的手形光标。用于标示被拖起的对象不允许在光标的当前位置被放下。&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr style=&quot;cursor: not-allowed;&quot;&gt;
-            &lt;td&gt;not-allowed&lt;/td&gt;
-            &lt;td&gt;禁止标记(一个被斜线贯穿的圆圈)光标。用于标示请求的操作不允许被执行。&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>效果如下所示：</p>
-<table cellpadding="6" cellspacing="0"><br>    <thead><br>        <tr><br>            <th>值</th><br>            <th>描述</th><br>        </tr><br>    </thead><br>    <tbody><br>        <tr style="cursor: url;"><br>            <td>url</td><br>            <td>需使用的自定义光标的 URL。注释：请在此列表的末端始终定义一种普通的光标，以防没有由 URL 定义的可用光标。</td><br>        </tr><br>        <tr style="cursor: default;"><br>            <td>default</td><br>            <td>默认光标（通常是一个箭头）</td><br>        </tr><br>        <tr style="cursor: auto;"><br>            <td>auto</td><br>            <td>默认。浏览器设置的光标。</td><br>        </tr><br>        <tr style="cursor: crosshair;"><br>            <td>crosshair</td><br>            <td>光标呈现为十字线。</td><br>        </tr><br>        <tr style="cursor: pointer;"><br>            <td>pointer</td><br>            <td>光标呈现为指示链接的指针（一只手）</td><br>        </tr><br>        <tr style="cursor: move;"><br>            <td>move</td><br>            <td>此光标指示某对象可被移动。</td><br>        </tr><br>        <tr style="cursor: e-resize;"><br>            <td>e-resize</td><br>            <td>此光标指示矩形框的边缘可被向右（东）移动。</td><br>        </tr><br>        <tr style="cursor: ne-resize;"><br>            <td>ne-resize</td><br>            <td>此光标指示矩形框的边缘可被向上及向右移动（北/东）。</td><br>        </tr><br>        <tr style="cursor: nw-resize;"><br>            <td>nw-resize</td><br>            <td>此光标指示矩形框的边缘可被向上及向左移动（北/西）。</td><br>        </tr><br>        <tr style="cursor: n-resize;"><br>            <td>n-resize</td><br>            <td>此光标指示矩形框的边缘可被向上（北）移动。</td><br>        </tr><br>        <tr style="cursor: se-resize;"><br>            <td>se-resize</td><br>            <td>此光标指示矩形框的边缘可被向下及向右移动（南/东）。</td><br>        </tr><br>        <tr style="cursor: sw-resize;"><br>            <td>sw-resize</td><br>            <td>此光标指示矩形框的边缘可被向下及向左移动（南/西）。</td><br>        </tr><br>        <tr style="cursor: s-resize;"><br>            <td>s-resize</td><br>            <td>此光标指示矩形框的边缘可被向下移动（南）。</td><br>        </tr><br>        <tr style="cursor: w-resize;"><br>            <td>w-resize</td><br>            <td>此光标指示矩形框的边缘可被向左移动（西）。</td><br>        </tr><br>        <tr style="cursor: text;"><br>            <td>text</td><br>            <td>此光标指示文本。</td><br>        </tr><br>        <tr style="cursor: vertical-text;"><br>            <td>vertical-text</td><br>            <td>用于标示可编辑的垂直文本的光标。通常是大写字母 I 旋转90度的形状。</td><br>        </tr><br>        <tr style="cursor: wait;"><br>            <td>wait</td><br>            <td>此光标指示程序正忙（通常是一只表或沙漏）。</td><br>        </tr><br>        <tr style="cursor: progress;"><br>            <td>progress</td><br>            <td>带有沙漏标记的箭头光标。用于标示一个进程正在后台运行。</td><br>        </tr><br>        <tr style="cursor: help;"><br>            <td>help</td><br>            <td>此光标指示可用的帮助（通常是一个问号或一个气球）。</td><br>        </tr><br>        <tr style="cursor: all-scroll;"><br>            <td>all-scroll</td><br>            <td>有上下左右四个箭头，中间有一个圆点的光标。用于标示页面可以向上下左右任何方向滚动。</td><br>        </tr><br>        <tr style="cursor: col-resize;"><br>            <td>col-resize</td><br>            <td>有左右两个箭头，中间由竖线分隔开的光标。用于标示项目或标题栏可以被水平改变尺寸。</td><br>        </tr><br>        <tr style="cursor: row-resize;"><br>            <td>row-resize</td><br>            <td>有上下两个箭头，中间由横线分隔开的光标。用于标示项目或标题栏可以被垂直改变尺寸。</td><br>        </tr><br>        <tr style="cursor: no-drop;"><br>            <td>no-drop</td><br>            <td>带有一个被斜线贯穿的圆圈的手形光标。用于标示被拖起的对象不允许在光标的当前位置被放下。</td><br>        </tr><br>        <tr style="cursor: not-allowed;"><br>            <td>not-allowed</td><br>            <td>禁止标记(一个被斜线贯穿的圆圈)光标。用于标示请求的操作不允许被执行。</td><br>        </tr><br>    </tbody><br></table>
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/23/cursor的所有样式/" data-id="cj4e7029t0003kgr09oisbpby" class="article-share-link">分享</a>
-      
-      
-      
     </footer>
   </div>
   
@@ -1052,7 +1015,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/javaScript-slice-concat-数组分割-数组合并/" style="font-size: 14px;">javaScript slice concat 数组分割 数组合并</a> <a href="/tags/javaScript-textarea/" style="font-size: 14px;">javaScript textarea</a> <a href="/tags/javaScript-数组/" style="font-size: 14px;">javaScript 数组</a> <a href="/tags/radius-css3-圆角/" style="font-size: 14px;">radius css3 圆角</a> <a href="/tags/textarea-火狐-谷歌-opera-ie/" style="font-size: 14px;">textarea 火狐 谷歌 opera ie</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/二维码-通讯录-浏览器-手机-微信/" style="font-size: 14px;">二维码 通讯录 浏览器 手机 微信</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/浏览器-chrome-控制台-前端开发/" style="font-size: 14px;">浏览器 chrome 控制台 前端开发</a> <a href="/tags/浏览器-对象-排序-javaScript/" style="font-size: 14px;">浏览器 对象 排序 javaScript</a>
+      <a href="/tags/input-html/" style="font-size: 14px;">input html</a> <a href="/tags/javaScript-slice-concat-数组分割-数组合并/" style="font-size: 14px;">javaScript slice concat 数组分割 数组合并</a> <a href="/tags/javaScript-textarea/" style="font-size: 14px;">javaScript textarea</a> <a href="/tags/javaScript-数组/" style="font-size: 14px;">javaScript 数组</a> <a href="/tags/radius-css3-圆角/" style="font-size: 14px;">radius css3 圆角</a> <a href="/tags/textarea-火狐-谷歌-opera-ie/" style="font-size: 14px;">textarea 火狐 谷歌 opera ie</a> <a href="/tags/url-搜索-函数/" style="font-size: 14px;">url 搜索 函数</a> <a href="/tags/二维码-通讯录-浏览器-手机-微信/" style="font-size: 14px;">二维码 通讯录 浏览器 手机 微信</a> <a href="/tags/函数-javaScript-计时器/" style="font-size: 14px;">函数 javaScript 计时器</a> <a href="/tags/函数-阶乘-Array-arguments/" style="font-size: 14px;">函数 阶乘 Array arguments</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/水平垂直居中-布局-css/" style="font-size: 14px;">水平垂直居中 布局 css</a> <a href="/tags/浏览器-chrome-控制台-前端开发/" style="font-size: 14px;">浏览器 chrome 控制台 前端开发</a> <a href="/tags/浏览器-对象-排序-javaScript/" style="font-size: 14px;">浏览器 对象 排序 javaScript</a>
     </div>
   </div>
 
@@ -1062,6 +1025,10 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/26/水平垂直居中——position与margin的结合使用/">水平垂直居中——position与margin的结合使用</a>
+          </li>
         
           <li>
             <a href="/2017/06/25/从一段字符串中快速找出某个字母或字符串出现的次数/">从一段字符串中快速找出某个字母或字符串出现的次数</a>
@@ -1079,10 +1046,6 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
             <a href="/2017/06/25/一个循环实现新数组n位值是老数组前n位的和/">一个循环实现新数组n位值是老数组前n位的和</a>
           </li>
         
-          <li>
-            <a href="/2017/06/25/chrome控制台中console的强大/">chrome控制台中console的强大</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1092,7 +1055,7 @@ $(&quot;#change-number&quot;).on(&apos;click&apos;, function() {
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
